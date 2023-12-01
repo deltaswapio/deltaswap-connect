@@ -20,7 +20,7 @@ export const MAINNET_CHAINS = {
   base: 30,
   sei: 32,
   planq: 7070,
-  deltachain: 3104,
+  deltachain: 7077,
   osmosis: 20,
   cosmoshub: 4000,
   evmos: 4001,
@@ -178,7 +178,7 @@ const MAINNET: { [chain in MainnetChainName]: ChainConfig } = {
   deltachain: {
     context: Context.COSMOS,
     key: 'deltachain',
-    id: 3104,
+    id: 7077,
     contracts: {},
     finalityThreshold: 0,
     nativeTokenDecimals: 6,
