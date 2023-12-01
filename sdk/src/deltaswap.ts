@@ -1,4 +1,4 @@
-import { Network as Environment } from '@certusone/deltaswap-sdk';
+import { Network as Environment } from '@deltaswapio/deltaswap-sdk';
 import { Domain, MultiProvider } from '@nomad-xyz/multi-provider';
 import { BigNumber } from 'ethers';
 

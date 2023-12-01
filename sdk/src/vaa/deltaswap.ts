@@ -1,4 +1,4 @@
-import { keccak256 } from '@certusone/deltaswap-sdk';
+import { keccak256 } from '@deltaswapio/deltaswap-sdk';
 
 export { isBytes } from 'ethers/lib/utils';
 

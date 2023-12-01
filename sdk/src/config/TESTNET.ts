@@ -1,4 +1,4 @@
-import { Network as Environment, CONTRACTS } from '@certusone/deltaswap-sdk';
+import { Network as Environment, CONTRACTS } from '@deltaswapio/deltaswap-sdk';
 import { DeltaswapConfig, Context, ChainConfig, Contracts } from '../types';
 
 /**

@@ -18,14 +18,14 @@ import {
   getOriginalAssetSui,
   redeemOnSui,
   transferFromSui,
-} from '@certusone/deltaswap-sdk';
+} from '@deltaswapio/deltaswap-sdk';
 import {
   getFieldsFromObjectResponse,
   getObjectFields,
   getPackageId,
   getTableKeyType,
   trimSuiType,
-} from '@certusone/deltaswap-sdk/lib/esm/sui';
+} from '@deltaswapio/deltaswap-sdk/lib/esm/sui';
 import { arrayify, hexlify } from 'ethers/lib/utils';
 import {
   ChainId,
@@ -686,7 +686,7 @@ export class SuiContext<
     return Number(sequence);
   }
 
-  // MODIFIED FROM @certusone/deltaswap-sdk
+  // MODIFIED FROM @deltaswapio/deltaswap-sdk
   // These differ in that they include an additional parameter to allow for caching of the `tokenBridgeStateFields`
   async getTokenCoinType(
     provider: JsonRpcProvider,

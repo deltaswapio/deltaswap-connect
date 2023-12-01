@@ -4,7 +4,7 @@ import {
   getForeignAssetSolana,
   redeemAndUnwrapOnSolana,
   redeemOnSolana,
-} from '@certusone/deltaswap-sdk';
+} from '@deltaswapio/deltaswap-sdk';
 import {
   ACCOUNT_SIZE,
   ASSOCIATED_TOKEN_PROGRAM_ID,

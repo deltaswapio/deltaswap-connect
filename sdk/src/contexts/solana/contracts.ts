@@ -1,8 +1,8 @@
 import { Connection, clusterApiUrl } from '@solana/web3.js';
 import { Program } from '@project-serum/anchor';
-import { TokenBridge } from '@certusone/deltaswap-sdk/lib/esm/solana/types/tokenBridge';
-import { NftBridge } from '@certusone/deltaswap-sdk/lib/esm/solana/types/nftBridge';
-import { Deltaswap } from '@certusone/deltaswap-sdk/lib/esm/solana/types/deltaswap';
+import { TokenBridge } from '@deltaswapio/deltaswap-sdk/lib/esm/solana/types/tokenBridge';
+import { NftBridge } from '@deltaswapio/deltaswap-sdk/lib/esm/solana/types/nftBridge';
+import { Deltaswap } from '@deltaswapio/deltaswap-sdk/lib/esm/solana/types/deltaswap';
 
 import { ChainName, ChainId, Contracts, Context } from '../../types';
 import { ContractsAbstract } from '../abstracts/contracts';

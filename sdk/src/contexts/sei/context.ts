@@ -7,7 +7,7 @@ import {
   isNativeCosmWasmDenom,
   parseTokenTransferPayload,
   parseVaa,
-} from '@certusone/deltaswap-sdk';
+} from '@deltaswapio/deltaswap-sdk';
 import { CosmWasmClient } from '@cosmjs/cosmwasm-stargate';
 import { EncodeObject, decodeTxRaw } from '@cosmjs/proto-signing';
 import {

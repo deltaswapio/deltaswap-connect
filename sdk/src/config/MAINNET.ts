@@ -1,4 +1,4 @@
-import { Network as Environment, CONTRACTS } from '@certusone/deltaswap-sdk';
+import { Network as Environment, CONTRACTS } from '@deltaswapio/deltaswap-sdk';
 import { DeltaswapConfig, Context, ChainConfig, Contracts } from '../types';
 
 /**
@@ -19,6 +19,7 @@ export const MAINNET_CHAINS = {
   optimism: 24,
   base: 30,
   sei: 32,
+  planq: 7070,
   deltachain: 3104,
   osmosis: 20,
   cosmoshub: 4000,
@@ -43,20 +44,33 @@ export type ChainContracts = {
 };
 
 const MAINNET: { [chain in MainnetChainName]: ChainConfig } = {
+  bsc: {
+    key: 'bsc',
+    id: 4,
+    context: Context.ETH,
+    contracts: {
+      ...CONTRACTS.MAINNET.bsc,
+      relayer: '',
+    },
+    finalityThreshold: 15,
+    nativeTokenDecimals: 18,
+  },
+  planq: {
+    key: 'planq',
+    id: 7070,
+    context: Context.ETH,
+    contracts: {
+      ...CONTRACTS.MAINNET.planq,
+      relayer: '',
+    },
+    finalityThreshold: 15,
+    nativeTokenDecimals: 18,
+  },
   ethereum: {
     key: 'ethereum',
     id: 2,
     context: Context.ETH,
-    contracts: {
-      ...CONTRACTS.MAINNET.ethereum,
-      relayer: '0xcafd2f0a35a4459fa40c0517e17e6fa2939441ca',
-      cctpContracts: {
-        cctpTokenMessenger: '0xbd3fa81b58ba92a82136038b25adec7066af3155',
-        cctpMessageTransmitter: '0x0a992d191deec32afe36203ad87d7d289a738f81',
-        deltaswapCircleRelayer: '0x4cb69FaE7e7Af841e44E1A1c30Af640739378bb2',
-        deltaswapCCTP: '0xAaDA05BD399372f0b0463744C09113c137636f6a',
-      },
-    },
+    contracts: { },
     finalityThreshold: 64,
     nativeTokenDecimals: 18,
     cctpDomain: 0,
@@ -65,11 +79,7 @@ const MAINNET: { [chain in MainnetChainName]: ChainConfig } = {
     key: 'solana',
     id: 1,
     context: Context.SOLANA,
-    contracts: {
-      ...CONTRACTS.MAINNET.solana,
-      relayer: '3vxKRPwUTiEkeUVyoZ9MXFe1V71sRLbLqu1gRYaWmehQ',
-      tbtcGateway: '87MEvHZCXE3ML5rrmh5uX1FbShHmRXXS32xJDGbQ7h5t',
-    },
+    contracts: { },
     finalityThreshold: 32,
     nativeTokenDecimals: 9,
   },
@@ -77,39 +87,15 @@ const MAINNET: { [chain in MainnetChainName]: ChainConfig } = {
     key: 'polygon',
     id: 5,
     context: Context.ETH,
-    contracts: {
-      ...CONTRACTS.MAINNET.polygon,
-      relayer: '0xcafd2f0a35a4459fa40c0517e17e6fa2939441ca',
-      tbtcGateway: '0x09959798B95d00a3183d20FaC298E4594E599eab',
-    },
+    contracts: {},
     finalityThreshold: 512,
-    nativeTokenDecimals: 18,
-  },
-  bsc: {
-    key: 'bsc',
-    id: 4,
-    context: Context.ETH,
-    contracts: {
-      ...CONTRACTS.MAINNET.bsc,
-      relayer: '0xcafd2f0a35a4459fa40c0517e17e6fa2939441ca',
-    },
-    finalityThreshold: 15,
     nativeTokenDecimals: 18,
   },
   avalanche: {
     key: 'avalanche',
     id: 6,
     context: Context.ETH,
-    contracts: {
-      ...CONTRACTS.MAINNET.avalanche,
-      relayer: '0xcafd2f0a35a4459fa40c0517e17e6fa2939441ca',
-      cctpContracts: {
-        cctpTokenMessenger: '0x6b25532e1060ce10cc3b0a99e5683b91bfde6982',
-        cctpMessageTransmitter: '0x8186359af5f57fbb40c6b14a588d2a59c0c29880',
-        deltaswapCircleRelayer: '0x4cb69FaE7e7Af841e44E1A1c30Af640739378bb2',
-        deltaswapCCTP: '0x09Fb06A271faFf70A651047395AaEb6265265F13',
-      },
-    },
+    contracts: {},
     finalityThreshold: 1,
     nativeTokenDecimals: 18,
     cctpDomain: 1,
@@ -118,10 +104,7 @@ const MAINNET: { [chain in MainnetChainName]: ChainConfig } = {
     key: 'fantom',
     id: 10,
     context: Context.ETH,
-    contracts: {
-      ...CONTRACTS.MAINNET.fantom,
-      relayer: '0xcafd2f0a35a4459fa40c0517e17e6fa2939441ca',
-    },
+    contracts: { },
     finalityThreshold: 1,
     nativeTokenDecimals: 18,
   },
@@ -129,10 +112,7 @@ const MAINNET: { [chain in MainnetChainName]: ChainConfig } = {
     key: 'celo',
     id: 14,
     context: Context.ETH,
-    contracts: {
-      ...CONTRACTS.MAINNET.celo,
-      relayer: '0xcafd2f0a35a4459fa40c0517e17e6fa2939441ca',
-    },
+    contracts: { },
     finalityThreshold: 1,
     nativeTokenDecimals: 18,
   },
@@ -140,10 +120,7 @@ const MAINNET: { [chain in MainnetChainName]: ChainConfig } = {
     key: 'moonbeam',
     id: 16,
     context: Context.ETH,
-    contracts: {
-      ...CONTRACTS.MAINNET.moonbeam,
-      relayer: '0xcafd2f0a35a4459fa40c0517e17e6fa2939441ca',
-    },
+    contracts: {},
     finalityThreshold: 1,
     nativeTokenDecimals: 18,
   },
@@ -151,15 +128,7 @@ const MAINNET: { [chain in MainnetChainName]: ChainConfig } = {
     key: 'sui',
     id: 21,
     context: Context.SUI,
-    contracts: {
-      ...CONTRACTS.MAINNET.sui,
-      relayer:
-        '0x57f4e0ba41a7045e29d435bc66cc4175f381eb700e6ec16d4fdfe92e5a4dff9f',
-      suiRelayerPackageId:
-        '0x38035f4c1e1772d43a3535535ea5b29c1c3ab2c0026d4ad639969831bd1d174d',
-      suiOriginalTokenBridgePackageId:
-        '0x26efee2b51c911237888e5dc6702868abca3c7ac12c53f76ef8eba0697695e3d',
-    },
+    contracts: {},
     finalityThreshold: 0,
     nativeTokenDecimals: 9,
   },
@@ -167,7 +136,7 @@ const MAINNET: { [chain in MainnetChainName]: ChainConfig } = {
     key: 'aptos',
     id: 22,
     context: Context.APTOS,
-    contracts: CONTRACTS.MAINNET.aptos,
+    contracts: {},
     finalityThreshold: 0,
     nativeTokenDecimals: 8,
   },
@@ -175,16 +144,7 @@ const MAINNET: { [chain in MainnetChainName]: ChainConfig } = {
     key: 'arbitrum',
     id: 23,
     context: Context.ETH,
-    contracts: {
-      ...CONTRACTS.MAINNET.arbitrum,
-      cctpContracts: {
-        cctpTokenMessenger: '0x19330d10D9Cc8751218eaf51E8885D058642E08A',
-        cctpMessageTransmitter: '0xC30362313FBBA5cf9163F0bb16a0e01f01A896ca',
-        deltaswapCircleRelayer: '0x4cb69FaE7e7Af841e44E1A1c30Af640739378bb2',
-        deltaswapCCTP: '0x2703483b1a5a7c577e8680de9df8be03c6f30e3c',
-      },
-      tbtcGateway: '0x1293a54e160D1cd7075487898d65266081A15458',
-    },
+    contracts: {},
     finalityThreshold: 0,
     nativeTokenDecimals: 18,
     cctpDomain: 3,
@@ -193,16 +153,7 @@ const MAINNET: { [chain in MainnetChainName]: ChainConfig } = {
     key: 'optimism',
     id: 24,
     context: Context.ETH,
-    contracts: {
-      ...CONTRACTS.MAINNET.optimism,
-      cctpContracts: {
-        cctpTokenMessenger: '0x2B4069517957735bE00ceE0fadAE88a26365528f',
-        cctpMessageTransmitter: '0x4d41f22c5a0e5c74090899e5a8fb597a8842b3e8',
-        deltaswapCircleRelayer: '0x4cb69FaE7e7Af841e44E1A1c30Af640739378bb2',
-        deltaswapCCTP: '0x2703483b1a5a7c577e8680de9df8be03c6f30e3c',
-      },
-      tbtcGateway: '0x1293a54e160D1cd7075487898d65266081A15458',
-    },
+    contracts: {},
     finalityThreshold: 0,
     nativeTokenDecimals: 18,
     cctpDomain: 2,
@@ -211,17 +162,7 @@ const MAINNET: { [chain in MainnetChainName]: ChainConfig } = {
     key: 'base',
     id: 30,
     context: Context.ETH,
-    contracts: {
-      ...CONTRACTS.MAINNET.base,
-      relayer: '0xaE8dc4a7438801Ec4edC0B035EcCCcF3807F4CC1',
-      cctpContracts: {
-        cctpTokenMessenger: '0x1682Ae6375C4E4A97e4B583BC394c861A46D8962',
-        cctpMessageTransmitter: '0xAD09780d193884d503182aD4588450C416D6F9D4',
-        deltaswapCircleRelayer: '0x4cb69fae7e7af841e44e1a1c30af640739378bb2',
-        deltaswapCCTP: '0x03faBB06Fa052557143dC28eFCFc63FC12843f1D',
-      },
-      tbtcGateway: '0x09959798B95d00a3183d20FaC298E4594E599eab',
-    },
+    contracts: {},
     finalityThreshold: 0,
     nativeTokenDecimals: 18,
     cctpDomain: 6,
@@ -230,10 +171,7 @@ const MAINNET: { [chain in MainnetChainName]: ChainConfig } = {
     key: 'sei',
     id: 32,
     context: Context.SEI,
-    contracts: {
-      ...CONTRACTS.MAINNET.sei,
-      seiTokenTranslator: '',
-    },
+    contracts: { },
     finalityThreshold: 0,
     nativeTokenDecimals: 6,
   },
@@ -241,13 +179,7 @@ const MAINNET: { [chain in MainnetChainName]: ChainConfig } = {
     context: Context.COSMOS,
     key: 'deltachain',
     id: 3104,
-    contracts: {
-      core: 'deltaswap1ufs3tlq4umljk0qfe8k5ya0x6hpavn897u2cnf9k0en9jr7qarqqaqfk2j',
-      token_bridge:
-        'deltaswap1466nf3zuxpya8q9emxukd7vftaf6h4psr0a07srl5zw74zh84yjq4lyjmh',
-      ibcShimContract:
-        'deltaswap14ejqjyq8um4p3xfqj74yld5waqljf88fz25yxnma0cngspxe3les00fpjx',
-    },
+    contracts: {},
     finalityThreshold: 0,
     nativeTokenDecimals: 6,
   },
@@ -306,6 +238,7 @@ const MAINNET_CONFIG: DeltaswapConfig = {
     optimism: 'https://rpc.ankr.com/optimism',
     base: 'https://base.publicnode.com',
     sei: '', // TODO: fill in
+    planq: 'https://evm-rpc.planq.network',
     deltachain: '',
     osmosis: 'https://osmosis-rpc.polkachu.com',
     cosmoshub: 'https://cosmos-rpc.polkachu.com',

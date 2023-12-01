@@ -6,14 +6,14 @@
 //   getMessageFee,
 //   optin,
 //   TransactionSignerPair,
-// } from '@certusone/deltaswap-sdk/lib/cjs/algorand';
+// } from '@deltaswapio/deltaswap-sdk/lib/cjs/algorand';
 // import {
 //   getEmitterAddressAlgorand,
 //   safeBigIntToNumber,
 //   textToUint8Array,
 //   hexToUint8Array,
 //   uint8ArrayToHex,
-// } from '@certusone/deltaswap-sdk';
+// } from '@deltaswapio/deltaswap-sdk';
 // import {
 //   Algodv2,
 //   bigIntToBytes,

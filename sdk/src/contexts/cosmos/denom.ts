@@ -1,4 +1,4 @@
-import { Network } from '@certusone/deltaswap-sdk';
+import { Network } from '@deltaswapio/deltaswap-sdk';
 import { ChainName } from '../../types';
 
 const MAINNET_NATIVE_DENOMS: Record<string, string> = {

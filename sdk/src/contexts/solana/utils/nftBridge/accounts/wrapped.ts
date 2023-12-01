@@ -1,4 +1,4 @@
-import { tryNativeToUint8Array } from '@certusone/deltaswap-sdk';
+import { tryNativeToUint8Array } from '@deltaswapio/deltaswap-sdk';
 import { BN } from '@project-serum/anchor';
 import {
   Connection,

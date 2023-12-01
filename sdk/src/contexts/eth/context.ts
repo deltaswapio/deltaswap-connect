@@ -1,8 +1,8 @@
 import {
   Implementation__factory,
   TokenImplementation__factory,
-} from '@certusone/deltaswap-sdk/lib/esm/ethers-contracts';
-import { createNonce, keccak256 } from '@certusone/deltaswap-sdk';
+} from '@deltaswapio/deltaswap-sdk/lib/esm/ethers-contracts';
+import { createNonce, keccak256 } from '@deltaswapio/deltaswap-sdk';
 import {
   BigNumber,
   BigNumberish,

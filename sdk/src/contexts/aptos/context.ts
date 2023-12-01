@@ -22,7 +22,7 @@ import {
   parseTokenTransferPayload,
   redeemOnAptos,
   transferFromAptos,
-} from '@certusone/deltaswap-sdk';
+} from '@deltaswapio/deltaswap-sdk';
 import { arrayify, hexlify, stripZeros, zeroPad } from 'ethers/lib/utils';
 import { sha3_256 } from 'js-sha3';
 import { ForeignAssetCache } from '../../utils';

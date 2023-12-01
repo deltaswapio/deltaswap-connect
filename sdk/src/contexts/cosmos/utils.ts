@@ -4,7 +4,7 @@ import {
   CHAIN_ID_KUJIRA,
   CHAIN_ID_OSMOSIS,
   CHAIN_ID_DELTACHAIN,
-} from '@certusone/deltaswap-sdk';
+} from '@deltaswapio/deltaswap-sdk';
 import { logs as cosmosLogs } from '@cosmjs/stargate';
 import { ChainId } from '../../types';
 

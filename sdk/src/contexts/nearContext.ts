@@ -2,7 +2,7 @@
 // import {
 //   getIsWrappedAssetNear,
 //   uint8ArrayToHex,
-// } from '@certusone/deltaswap-sdk';
+// } from '@deltaswapio/deltaswap-sdk';
 // import { Account, connect } from 'near-api-js';
 // import BN from 'bn.js';
 // import { arrayify, sha256 } from 'ethers/lib/utils';

@@ -7,7 +7,7 @@
 // import {
 //   hexToUint8Array,
 //   isNativeDenomInjective,
-// } from '@certusone/deltaswap-sdk';
+// } from '@deltaswapio/deltaswap-sdk';
 
 // export class InjectiveContext<T extends DeltaswapContext> extends BridgeAbstract {
 //   readonly context: T;

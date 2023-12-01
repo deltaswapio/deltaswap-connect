@@ -1,4 +1,4 @@
-import { Network as Environment } from '@certusone/deltaswap-sdk';
+import { Network as Environment } from '@deltaswapio/deltaswap-sdk';
 import { BigNumber } from 'ethers';
 import { MainnetChainId, MainnetChainName } from './config/MAINNET';
 import { TestnetChainId, TestnetChainName } from './config/TESTNET';

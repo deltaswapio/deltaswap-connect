@@ -1,6 +1,6 @@
 // import { MsgExecuteContract } from '@terra-money/terra.js';
-// import { isNativeDenom } from '@certusone/deltaswap-sdk/lib/cjs/terra';
-// import { hexToUint8Array } from '@certusone/deltaswap-sdk';
+// import { isNativeDenom } from '@deltaswapio/deltaswap-sdk/lib/cjs/terra';
+// import { hexToUint8Array } from '@deltaswapio/deltaswap-sdk';
 // import { bech32 } from 'bech32';
 // import { zeroPad } from 'ethers/lib/utils';
 

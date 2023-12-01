@@ -1,9 +1,9 @@
-import { ethers_contracts } from '@certusone/deltaswap-sdk/lib/esm';
+import { ethers_contracts } from '@deltaswapio/deltaswap-sdk/lib/esm';
 import {
   Deltaswap,
   Bridge,
   NFTBridge,
-} from '@certusone/deltaswap-sdk/lib/esm/ethers-contracts';
+} from '@deltaswapio/deltaswap-sdk/lib/esm/ethers-contracts';
 
 import { ChainName, ChainId, Contracts, Context } from '../../types';
 import { TokenBridgeRelayer } from '../../abis/TokenBridgeRelayer';
