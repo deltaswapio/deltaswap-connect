@@ -1,10 +1,10 @@
 import { ChainName, ChainId, Context, Contracts } from '../../types';
 import { filterByContext } from '../../utils';
-import { WormholeContext } from '../../wormhole';
+import { DeltaswapContext } from '../../deltaswap';
 import { ContractsAbstract } from '../abstracts/contracts';
 
 export class SeiContracts<
-  T extends WormholeContext,
+  T extends DeltaswapContext,
 > extends ContractsAbstract<T> {
   protected _contracts: Map<ChainName, any>;
   protected context: T;
@@ -64,22 +64,22 @@ export class SeiContracts<
   }
 
   /**
-   * Returns wormhole CCTP relayer contract for the chain
+   * Returns deltaswap CCTP relayer contract for the chain
    *
-   * @returns An interface for the Wormhole CCTP relayer contract, undefined if not found
+   * @returns An interface for the Deltaswap CCTP relayer contract, undefined if not found
    */
-  getWormholeCircleRelayer(chain: ChainName | ChainId): any {
+  getDeltaswapCircleRelayer(chain: ChainName | ChainId): any {
     return undefined;
   }
 
   /**
-   * Returns wormhole CCTP relayer contract for the chain
+   * Returns deltaswap CCTP relayer contract for the chain
    *
-   * @returns An interface for the Wormhole CCTP relayer contract, errors if not found
+   * @returns An interface for the Deltaswap CCTP relayer contract, errors if not found
    */
-  mustGetWormholeCircleRelayer(chain: ChainName | ChainId): any {
+  mustGetDeltaswapCircleRelayer(chain: ChainName | ChainId): any {
     throw new Error(
-      `Wormhole circle relayer contract for domain ${chain} not found`,
+      `Deltaswap circle relayer contract for domain ${chain} not found`,
     );
   }
 }

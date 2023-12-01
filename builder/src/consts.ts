@@ -1,7 +1,7 @@
 import {
   MainnetChainName,
   TestnetChainName,
-} from "@wormhole-foundation/wormhole-connect";
+} from "@deltaswapio/deltaswap-connect";
 
 export type Network = {
   name: string;
@@ -193,7 +193,7 @@ export const ROUTE_INFOS: RouteInfo[] = [
     key: "bridge",
     title: "Token Bridge",
     description:
-      "Lock-and-Mint bridging between all Wormhole supported chains.",
+      "Lock-and-Mint bridging between all Deltaswap supported chains.",
   },
   {
     key: "relay",
@@ -205,7 +205,7 @@ export const ROUTE_INFOS: RouteInfo[] = [
     key: "cctpManual",
     title: "Circle CCTP",
     description:
-      "Permissionlessly transfer native USDC cross-chain with CCTP + Wormhole.",
+      "Permissionlessly transfer native USDC cross-chain with CCTP + Deltaswap.",
     link: "https://www.circle.com/en/cross-chain-transfer-protocol",
   },
   {
@@ -219,13 +219,13 @@ export const ROUTE_INFOS: RouteInfo[] = [
     title: "Gateway",
     description:
       "Gateway connects liquidity and users from Ethereum and beyond to Cosmos chains and apps, all with an IBC-based liquidity router.",
-    link: "https://wormhole.com/gateway/",
+    link: "https://deltaswap.com/gateway/",
   },
   {
     key: "tbtc",
     title: "Threshold BTC",
     description:
-      "Permissionlessly transfer tBTC cross-chain with Threshold + Wormhole.",
+      "Permissionlessly transfer tBTC cross-chain with Threshold + Deltaswap.",
     link: "https://threshold.network/earn/btc",
   },
 ];
@@ -246,7 +246,7 @@ export const DEFAULT_MAINNET_RPCS = {
   optimism: "https://rpc.ankr.com/optimism",
   base: "https://base.publicnode.com",
   sei: "", // TODO: fill in
-  wormchain: "",
+  deltachain: "",
   osmosis: "https://osmosis-rpc.polkachu.com",
   cosmoshub: "https://cosmos-rpc.polkachu.com",
   evmos: "https://evmos-rpc.polkachu.com",
@@ -268,7 +268,7 @@ export const DEFAULT_TESTNET_RPCS = {
   optimismgoerli: "https://optimism-goerli.publicnode.com",
   basegoerli: "https://base-goerli.publicnode.com",
   sei: "https://rpc.atlantic-2.seinetwork.io",
-  wormchain: "",
+  deltachain: "",
   osmosis: "https://rpc.osmotest5.osmosis.zone",
   cosmoshub: "https://rpc.sentry-02.theta-testnet.polypore.xyz",
   evmos: "https://evmos-testnet-rpc.polkachu.com",

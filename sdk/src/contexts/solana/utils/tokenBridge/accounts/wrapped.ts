@@ -1,4 +1,4 @@
-import { tryNativeToUint8Array } from '@certusone/wormhole-sdk';
+import { tryNativeToUint8Array } from '@certusone/deltaswap-sdk';
 import {
   Connection,
   PublicKey,

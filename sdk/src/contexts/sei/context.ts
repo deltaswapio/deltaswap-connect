@@ -1,13 +1,13 @@
 import {
   CHAIN_ID_SEI,
-  WormholeWrappedInfo,
+  DeltaswapWrappedInfo,
   buildTokenId,
   cosmos,
   hexToUint8Array,
   isNativeCosmWasmDenom,
   parseTokenTransferPayload,
   parseVaa,
-} from '@certusone/wormhole-sdk';
+} from '@certusone/deltaswap-sdk';
 import { CosmWasmClient } from '@cosmjs/cosmwasm-stargate';
 import { EncodeObject, decodeTxRaw } from '@cosmjs/proto-signing';
 import {
@@ -39,7 +39,7 @@ import {
   TokenId,
 } from '../../types';
 import { ForeignAssetCache, stripHexPrefix } from '../../utils';
-import { WormholeContext } from '../../wormhole';
+import { DeltaswapContext } from '../../deltaswap';
 import { TokenBridgeAbstract } from '../abstracts/tokenBridge';
 import { SeiContracts } from './contracts';
 
@@ -113,7 +113,7 @@ const buildExecuteMsg = (
  * In order to take leverage this feature to provide a native
  * counterpart to bridged assets, a special relayer contract called
  * "token translator" is deployed on Sei
- * (refer [here](https://github.com/wormhole-foundation/example-sei-token-translator/)
+ * (refer [here](https://github.com/deltaswap-foundation/example-sei-token-translator/)
  * for the reference implementation)
  *
  * The translator contract works the same
@@ -135,7 +135,7 @@ const buildExecuteMsg = (
  * the traditional token bridge process is used
  */
 export class SeiContext<
-  T extends WormholeContext,
+  T extends DeltaswapContext,
 > extends TokenBridgeAbstract<SeiTransaction> {
   readonly type = Context.SEI;
   readonly contracts: SeiContracts<T>;
@@ -223,7 +223,7 @@ export class SeiContext<
     return {
       msgs,
       fee,
-      memo: 'Wormhole - Initiate Transfer',
+      memo: 'Deltaswap - Initiate Transfer',
     };
   }
 
@@ -547,7 +547,7 @@ export class SeiContext<
 
   async getOriginalAssetSei(
     wrappedAddress: string,
-  ): Promise<WormholeWrappedInfo> {
+  ): Promise<DeltaswapWrappedInfo> {
     const chainId = CHAIN_ID_SEI;
     if (isNativeCosmWasmDenom(chainId, wrappedAddress)) {
       return {
@@ -665,7 +665,7 @@ export class SeiContext<
     // parse logs emitted for the tx execution
     const logs = cosmosLogs.parseRawLog(tx.rawLog);
 
-    // extract information wormhole contract logs
+    // extract information deltaswap contract logs
     // - message.message: the vaa payload (i.e. the transfer information)
     // - message.sequence: the vaa's sequence number
     // - message.sender: the vaa's emitter address
@@ -827,7 +827,7 @@ export class SeiContext<
     return {
       msgs,
       fee,
-      memo: 'Wormhole - Complete Transfer',
+      memo: 'Deltaswap - Complete Transfer',
     };
   }
 

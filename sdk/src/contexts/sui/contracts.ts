@@ -1,6 +1,6 @@
 import { ChainName, ChainId, Contracts, Context } from '../../types';
 import { ContractsAbstract } from '../abstracts/contracts';
-import { WormholeContext } from '../../wormhole';
+import { DeltaswapContext } from '../../deltaswap';
 import { filterByContext } from '../../utils';
 import { SuiRelayer } from './relayer';
 import { JsonRpcProvider } from '@mysten/sui.js';
@@ -9,7 +9,7 @@ import { JsonRpcProvider } from '@mysten/sui.js';
  * @category Sui
  */
 export class SuiContracts<
-  T extends WormholeContext,
+  T extends DeltaswapContext,
 > extends ContractsAbstract<T> {
   protected _contracts: Map<ChainName, any>;
   readonly context: T;
@@ -39,7 +39,7 @@ export class SuiContracts<
   }
 
   /**
-   * Returns core wormhole contract for the chain
+   * Returns core deltaswap contract for the chain
    *
    * @returns An interface for the core contract, undefined if not found
    */
@@ -48,7 +48,7 @@ export class SuiContracts<
   }
 
   /**
-   * Returns core wormhole contract for the chain
+   * Returns core deltaswap contract for the chain
    *
    * @returns An interface for the core contract, errors if not found
    */
@@ -57,7 +57,7 @@ export class SuiContracts<
   }
 
   /**
-   * Returns wormhole bridge contract for the chain
+   * Returns deltaswap bridge contract for the chain
    *
    * @returns An interface for the bridge contract, undefined if not found
    */
@@ -66,7 +66,7 @@ export class SuiContracts<
   }
 
   /**
-   * Returns wormhole bridge contract for the chain
+   * Returns deltaswap bridge contract for the chain
    *
    * @returns An interface for the bridge contract, errors if not found
    */
@@ -75,7 +75,7 @@ export class SuiContracts<
   }
 
   /**
-   * Returns wormhole NFT bridge contract for the chain
+   * Returns deltaswap NFT bridge contract for the chain
    *
    * @returns An interface for the NFT bridge contract, undefined if not found
    */
@@ -84,7 +84,7 @@ export class SuiContracts<
   }
 
   /**
-   * Returns wormhole NFT bridge contract for the chain
+   * Returns deltaswap NFT bridge contract for the chain
    *
    * @returns An interface for the NFT bridge contract, errors if not found
    */
@@ -93,7 +93,7 @@ export class SuiContracts<
   }
 
   /**
-   * Returns wormhole Token Bridge Relayer contract for the chain
+   * Returns deltaswap Token Bridge Relayer contract for the chain
    *
    * @returns An interface for the Token Bridge Relayer contract, undefined if not found
    */
@@ -109,7 +109,7 @@ export class SuiContracts<
   }
 
   /**
-   * Returns wormhole Token Bridge Relayer contract for the chain
+   * Returns deltaswap Token Bridge Relayer contract for the chain
    *
    * @returns An interface for the Token Bridge Relayer contract, errors if not found
    */
@@ -123,22 +123,22 @@ export class SuiContracts<
   }
 
   /**
-   * Returns wormhole CCTP relayer contract for the chain
+   * Returns deltaswap CCTP relayer contract for the chain
    *
-   * @returns An interface for the Wormhole CCTP relayer contract, undefined if not found
+   * @returns An interface for the Deltaswap CCTP relayer contract, undefined if not found
    */
-  getWormholeCircleRelayer(chain: ChainName | ChainId): any {
+  getDeltaswapCircleRelayer(chain: ChainName | ChainId): any {
     return undefined;
   }
 
   /**
-   * Returns wormhole CCTP relayer contract for the chain
+   * Returns deltaswap CCTP relayer contract for the chain
    *
-   * @returns An interface for the Wormhole CCTP relayer contract, errors if not found
+   * @returns An interface for the Deltaswap CCTP relayer contract, errors if not found
    */
-  mustGetWormholeCircleRelayer(chain: ChainName | ChainId): any {
+  mustGetDeltaswapCircleRelayer(chain: ChainName | ChainId): any {
     throw new Error(
-      `Wormhole circle relayer contract for domain ${chain} not found`,
+      `Deltaswap circle relayer contract for domain ${chain} not found`,
     );
   }
 }

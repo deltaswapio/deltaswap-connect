@@ -1,6 +1,6 @@
-import { ChainName, Context, WormholeConfig } from './types';
+import { ChainName, Context, DeltaswapConfig } from './types';
 
-export function filterByContext(config: WormholeConfig, context: Context) {
+export function filterByContext(config: DeltaswapConfig, context: Context) {
   return Object.values(config.chains).filter((c) => c.context === context);
 }
 

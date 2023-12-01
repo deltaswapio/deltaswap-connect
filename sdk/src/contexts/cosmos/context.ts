@@ -1,13 +1,13 @@
 import {
-  CHAIN_ID_WORMCHAIN,
+  CHAIN_ID_DELTACHAIN,
   CosmWasmChainId,
-  WormholeWrappedInfo,
+  DeltaswapWrappedInfo,
   cosmos,
   hexToUint8Array,
   isNativeCosmWasmDenom,
   parseTokenTransferPayload,
   parseVaa,
-} from '@certusone/wormhole-sdk';
+} from '@certusone/deltaswap-sdk';
 import { CosmWasmClient } from '@cosmjs/cosmwasm-stargate';
 import { EncodeObject } from '@cosmjs/proto-signing';
 import {
@@ -45,7 +45,7 @@ import {
   TokenId,
 } from '../../types';
 import { ForeignAssetCache, waitFor } from '../../utils';
-import { WormholeContext } from '../../wormhole';
+import { DeltaswapContext } from '../../deltaswap';
 import { TokenBridgeAbstract } from '../abstracts/tokenBridge';
 import { CosmosContracts } from './contracts';
 import { getNativeDenom, getPrefix, isNativeDenom } from './denom';
@@ -71,7 +71,7 @@ const buildExecuteMsg = (
 const IBC_PORT = 'transfer';
 
 export class CosmosContext<
-  T extends WormholeContext,
+  T extends DeltaswapContext,
 > extends TokenBridgeAbstract<CosmosTransaction> {
   readonly type = Context.COSMOS;
   readonly contracts: CosmosContracts<T>;
@@ -195,7 +195,7 @@ export class CosmosContext<
     }
 
     const address =
-      this.context.toChainId(chain) === CHAIN_ID_WORMCHAIN
+      this.context.toChainId(chain) === CHAIN_ID_DELTACHAIN
         ? await this.getWhForeignAsset(tokenId, chain)
         : await this.getGatewayForeignAsset(tokenId, chain);
 
@@ -215,11 +215,11 @@ export class CosmosContext<
     chain: ChainId | ChainName,
   ): Promise<string | null> {
     // add check here in case the token is a native cosmos denom
-    // in such cases there's no need to look for in the wormchain network
+    // in such cases there's no need to look for in the deltachain network
     if (tokenId.chain === chain) return tokenId.address;
     const wrappedAsset = await this.getWhForeignAsset(
       tokenId,
-      CHAIN_ID_WORMCHAIN,
+      CHAIN_ID_DELTACHAIN,
     );
     if (!wrappedAsset) return null;
     return this.isNativeDenom(wrappedAsset, chain)
@@ -234,7 +234,7 @@ export class CosmosContext<
 
   getTranslatorAddress(): string {
     const addr =
-      this.context.conf.chains['wormchain']?.contracts.ibcShimContract;
+      this.context.conf.chains['deltachain']?.contracts.ibcShimContract;
     if (!addr) throw new Error('IBC Shim contract not configured');
     return addr;
   }
@@ -251,7 +251,7 @@ export class CosmosContext<
 
   async getIbcDestinationChannel(chain: ChainId | ChainName): Promise<string> {
     const sourceChannel = await this.getIbcSourceChannel(chain);
-    const queryClient = await this.getQueryClient(CHAIN_ID_WORMCHAIN);
+    const queryClient = await this.getQueryClient(CHAIN_ID_DELTACHAIN);
     const conn = await queryClient.ibc.channel.channel(IBC_PORT, sourceChannel);
 
     const destChannel = conn.channel?.counterparty?.channelId;
@@ -266,7 +266,7 @@ export class CosmosContext<
     const id = this.context.toChainId(chain);
     if (!isGatewayChain(id))
       throw new Error(`Chain ${chain} is not a gateway chain`);
-    const client = await this.getCosmWasmClient(CHAIN_ID_WORMCHAIN);
+    const client = await this.getCosmWasmClient(CHAIN_ID_DELTACHAIN);
     const { channel } = await client.queryContractSmart(
       this.getTranslatorAddress(),
       {
@@ -399,7 +399,7 @@ export class CosmosContext<
     return {
       msgs,
       fee,
-      memo: 'Wormhole - Complete Transfer',
+      memo: 'Deltaswap - Complete Transfer',
     };
   }
 
@@ -430,12 +430,12 @@ export class CosmosContext<
       return config.nativeTokenDecimals;
     }
 
-    // extract the cw20 from the ibc denom if the target chain is not wormchain
+    // extract the cw20 from the ibc denom if the target chain is not deltachain
     const cw20 =
-      name === 'wormchain'
+      name === 'deltachain'
         ? tokenAddr
         : await this.ibcDenomToCW20(tokenAddr, chain);
-    const client = await this.getCosmWasmClient(CHAIN_ID_WORMCHAIN);
+    const client = await this.getCosmWasmClient(CHAIN_ID_DELTACHAIN);
     const { decimals } = await client.queryContractSmart(cw20, {
       token_info: {},
     });
@@ -464,7 +464,7 @@ export class CosmosContext<
     if (parts.length !== 3)
       throw new Error(`Can't convert ${denom} to cw20 address`);
     const [, , address] = parts;
-    return cosmos.humanAddress('wormhole', base58.decode(address));
+    return cosmos.humanAddress('deltaswap', base58.decode(address));
   }
 
   async getMessage(
@@ -555,7 +555,7 @@ export class CosmosContext<
   async getOriginalAsset(
     chain: ChainName | ChainId,
     wrappedAddress: string,
-  ): Promise<WormholeWrappedInfo> {
+  ): Promise<DeltaswapWrappedInfo> {
     const chainId = this.context.toChainId(chain) as CosmWasmChainId;
     // need to cast to ChainId since Terra (chain id 3) is not on wh connect
     if (!isGatewayChain(chainId as ChainId)) {

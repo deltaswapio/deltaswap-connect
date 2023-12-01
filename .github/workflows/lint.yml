@@ -32,7 +32,7 @@ jobs:
           cache: "npm"
       - run: npm ci
       - run: npm run build -w sdk
-      - run: npm test -w wormhole-connect
+      - run: npm test -w deltaswap-connect
   check-token-list:
     runs-on: ubuntu-latest
 
@@ -44,7 +44,7 @@ jobs:
           cache: "npm"
       - run: npm ci
       - run: npm run build -w sdk
-      - run: cd wormhole-connect && npx tsx scripts/checkForeignAssetsConfig.ts
+      - run: cd deltaswap-connect && npx tsx scripts/checkForeignAssetsConfig.ts
   build:
     runs-on: ubuntu-latest
 

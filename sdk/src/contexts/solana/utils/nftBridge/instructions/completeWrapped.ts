@@ -11,7 +11,7 @@ import {
   TOKEN_PROGRAM_ID,
 } from '@solana/spl-token';
 import { createReadOnlyNftBridgeProgramInterface } from '../program';
-import { deriveClaimKey, derivePostedVaaKey } from '../../wormhole';
+import { deriveClaimKey, derivePostedVaaKey } from '../../deltaswap';
 import {
   deriveEndpointKey,
   deriveNftBridgeConfigKey,
@@ -30,7 +30,7 @@ import { SplTokenMetadataProgram } from '../../utils';
 export function createCompleteTransferWrappedInstruction(
   connection: Connection,
   nftBridgeProgramId: PublicKeyInitData,
-  wormholeProgramId: PublicKeyInitData,
+  deltaswapProgramId: PublicKeyInitData,
   payer: PublicKeyInitData,
   vaa: SignedVaa | ParsedNftTransferVaa,
   toAuthority?: PublicKeyInitData,
@@ -44,7 +44,7 @@ export function createCompleteTransferWrappedInstruction(
   return methods._ixFn(...methods._args, {
     accounts: getCompleteTransferWrappedAccounts(
       nftBridgeProgramId,
-      wormholeProgramId,
+      deltaswapProgramId,
       payer,
       vaa,
       toAuthority,
@@ -72,12 +72,12 @@ export interface CompleteTransferWrappedAccounts {
   tokenProgram: PublicKey;
   splMetadataProgram: PublicKey;
   associatedTokenProgram: PublicKey;
-  wormholeProgram: PublicKey;
+  deltaswapProgram: PublicKey;
 }
 
 export function getCompleteTransferWrappedAccounts(
   nftBridgeProgramId: PublicKeyInitData,
-  wormholeProgramId: PublicKeyInitData,
+  deltaswapProgramId: PublicKeyInitData,
   payer: PublicKeyInitData,
   vaa: SignedVaa | ParsedNftTransferVaa,
   toAuthority?: PublicKeyInitData,
@@ -92,7 +92,7 @@ export function getCompleteTransferWrappedAccounts(
   return {
     payer: new PublicKey(payer),
     config: deriveNftBridgeConfigKey(nftBridgeProgramId),
-    vaa: derivePostedVaaKey(wormholeProgramId, parsed.hash),
+    vaa: derivePostedVaaKey(deltaswapProgramId, parsed.hash),
     claim: deriveClaimKey(
       nftBridgeProgramId,
       parsed.emitterAddress,
@@ -114,6 +114,6 @@ export function getCompleteTransferWrappedAccounts(
     tokenProgram: TOKEN_PROGRAM_ID,
     splMetadataProgram: SplTokenMetadataProgram.programId,
     associatedTokenProgram: ASSOCIATED_TOKEN_PROGRAM_ID,
-    wormholeProgram: new PublicKey(wormholeProgramId),
+    deltaswapProgram: new PublicKey(deltaswapProgramId),
   };
 }

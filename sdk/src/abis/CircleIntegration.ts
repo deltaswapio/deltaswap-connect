@@ -61,13 +61,13 @@ export declare namespace CircleIntegrationStructs {
   };
 
   export type RedeemParametersStruct = {
-    encodedWormholeMessage: PromiseOrValue<BytesLike>;
+    encodedDeltaswapMessage: PromiseOrValue<BytesLike>;
     circleBridgeMessage: PromiseOrValue<BytesLike>;
     circleAttestation: PromiseOrValue<BytesLike>;
   };
 
   export type RedeemParametersStructOutput = [string, string, string] & {
-    encodedWormholeMessage: string;
+    encodedDeltaswapMessage: string;
     circleBridgeMessage: string;
     circleAttestation: string;
   };
@@ -115,11 +115,11 @@ export interface CircleIntegrationInterface extends utils.Interface {
     'redeemTokensWithPayload((bytes,bytes,bytes))': FunctionFragment;
     'registerEmitterAndDomain(bytes)': FunctionFragment;
     'transferTokensWithPayload((address,uint256,uint16,bytes32),uint32,bytes)': FunctionFragment;
-    'updateWormholeFinality(bytes)': FunctionFragment;
+    'updateDeltaswapFinality(bytes)': FunctionFragment;
     'upgradeContract(bytes)': FunctionFragment;
     'verifyGovernanceMessage(bytes,uint8)': FunctionFragment;
-    'wormhole()': FunctionFragment;
-    'wormholeFinality()': FunctionFragment;
+    'deltaswap()': FunctionFragment;
+    'deltaswapFinality()': FunctionFragment;
   };
 
   getFunction(
@@ -145,11 +145,11 @@ export interface CircleIntegrationInterface extends utils.Interface {
       | 'redeemTokensWithPayload'
       | 'registerEmitterAndDomain'
       | 'transferTokensWithPayload'
-      | 'updateWormholeFinality'
+      | 'updateDeltaswapFinality'
       | 'upgradeContract'
       | 'verifyGovernanceMessage'
-      | 'wormhole'
-      | 'wormholeFinality',
+      | 'deltaswap'
+      | 'deltaswapFinality',
   ): FunctionFragment;
 
   encodeFunctionData(
@@ -235,7 +235,7 @@ export interface CircleIntegrationInterface extends utils.Interface {
     ],
   ): string;
   encodeFunctionData(
-    functionFragment: 'updateWormholeFinality',
+    functionFragment: 'updateDeltaswapFinality',
     values: [PromiseOrValue<BytesLike>],
   ): string;
   encodeFunctionData(
@@ -246,9 +246,9 @@ export interface CircleIntegrationInterface extends utils.Interface {
     functionFragment: 'verifyGovernanceMessage',
     values: [PromiseOrValue<BytesLike>, PromiseOrValue<BigNumberish>],
   ): string;
-  encodeFunctionData(functionFragment: 'wormhole', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'deltaswap', values?: undefined): string;
   encodeFunctionData(
-    functionFragment: 'wormholeFinality',
+    functionFragment: 'deltaswapFinality',
     values?: undefined,
   ): string;
 
@@ -331,7 +331,7 @@ export interface CircleIntegrationInterface extends utils.Interface {
     data: BytesLike,
   ): Result;
   decodeFunctionResult(
-    functionFragment: 'updateWormholeFinality',
+    functionFragment: 'updateDeltaswapFinality',
     data: BytesLike,
   ): Result;
   decodeFunctionResult(
@@ -342,9 +342,9 @@ export interface CircleIntegrationInterface extends utils.Interface {
     functionFragment: 'verifyGovernanceMessage',
     data: BytesLike,
   ): Result;
-  decodeFunctionResult(functionFragment: 'wormhole', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'deltaswap', data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: 'wormholeFinality',
+    functionFragment: 'deltaswapFinality',
     data: BytesLike,
   ): Result;
 
@@ -354,7 +354,7 @@ export interface CircleIntegrationInterface extends utils.Interface {
     'ContractUpgraded(address,address)': EventFragment;
     'Redeemed(uint16,bytes32,uint64)': EventFragment;
     'Upgraded(address)': EventFragment;
-    'WormholeFinalityUpdated(uint8,uint8)': EventFragment;
+    'DeltaswapFinalityUpdated(uint8,uint8)': EventFragment;
   };
 
   getEvent(nameOrSignatureOrTopic: 'AdminChanged'): EventFragment;
@@ -362,7 +362,7 @@ export interface CircleIntegrationInterface extends utils.Interface {
   getEvent(nameOrSignatureOrTopic: 'ContractUpgraded'): EventFragment;
   getEvent(nameOrSignatureOrTopic: 'Redeemed'): EventFragment;
   getEvent(nameOrSignatureOrTopic: 'Upgraded'): EventFragment;
-  getEvent(nameOrSignatureOrTopic: 'WormholeFinalityUpdated'): EventFragment;
+  getEvent(nameOrSignatureOrTopic: 'DeltaswapFinalityUpdated'): EventFragment;
 }
 
 export interface AdminChangedEventObject {
@@ -417,17 +417,17 @@ export type UpgradedEvent = TypedEvent<[string], UpgradedEventObject>;
 
 export type UpgradedEventFilter = TypedEventFilter<UpgradedEvent>;
 
-export interface WormholeFinalityUpdatedEventObject {
+export interface DeltaswapFinalityUpdatedEventObject {
   oldFinality: number;
   newFinality: number;
 }
-export type WormholeFinalityUpdatedEvent = TypedEvent<
+export type DeltaswapFinalityUpdatedEvent = TypedEvent<
   [number, number],
-  WormholeFinalityUpdatedEventObject
+  DeltaswapFinalityUpdatedEventObject
 >;
 
-export type WormholeFinalityUpdatedEventFilter =
-  TypedEventFilter<WormholeFinalityUpdatedEvent>;
+export type DeltaswapFinalityUpdatedEventFilter =
+  TypedEventFilter<DeltaswapFinalityUpdatedEvent>;
 
 export interface CircleIntegration extends BaseContract {
   connect(signerOrProvider: Signer | Provider | string): this;
@@ -544,7 +544,7 @@ export interface CircleIntegration extends BaseContract {
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> },
     ): Promise<ContractTransaction>;
 
-    updateWormholeFinality(
+    updateDeltaswapFinality(
       encodedMessage: PromiseOrValue<BytesLike>,
       overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<ContractTransaction>;
@@ -560,9 +560,9 @@ export interface CircleIntegration extends BaseContract {
       overrides?: CallOverrides,
     ): Promise<[string, string] & { messageHash: string; payload: string }>;
 
-    wormhole(overrides?: CallOverrides): Promise<[string]>;
+    deltaswap(overrides?: CallOverrides): Promise<[string]>;
 
-    wormholeFinality(overrides?: CallOverrides): Promise<[number]>;
+    deltaswapFinality(overrides?: CallOverrides): Promise<[number]>;
   };
 
   addressToBytes32(
@@ -649,7 +649,7 @@ export interface CircleIntegration extends BaseContract {
     overrides?: PayableOverrides & { from?: PromiseOrValue<string> },
   ): Promise<ContractTransaction>;
 
-  updateWormholeFinality(
+  updateDeltaswapFinality(
     encodedMessage: PromiseOrValue<BytesLike>,
     overrides?: Overrides & { from?: PromiseOrValue<string> },
   ): Promise<ContractTransaction>;
@@ -665,9 +665,9 @@ export interface CircleIntegration extends BaseContract {
     overrides?: CallOverrides,
   ): Promise<[string, string] & { messageHash: string; payload: string }>;
 
-  wormhole(overrides?: CallOverrides): Promise<string>;
+  deltaswap(overrides?: CallOverrides): Promise<string>;
 
-  wormholeFinality(overrides?: CallOverrides): Promise<number>;
+  deltaswapFinality(overrides?: CallOverrides): Promise<number>;
 
   callStatic: {
     addressToBytes32(
@@ -754,7 +754,7 @@ export interface CircleIntegration extends BaseContract {
       overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
-    updateWormholeFinality(
+    updateDeltaswapFinality(
       encodedMessage: PromiseOrValue<BytesLike>,
       overrides?: CallOverrides,
     ): Promise<void>;
@@ -770,9 +770,9 @@ export interface CircleIntegration extends BaseContract {
       overrides?: CallOverrides,
     ): Promise<[string, string] & { messageHash: string; payload: string }>;
 
-    wormhole(overrides?: CallOverrides): Promise<string>;
+    deltaswap(overrides?: CallOverrides): Promise<string>;
 
-    wormholeFinality(overrides?: CallOverrides): Promise<number>;
+    deltaswapFinality(overrides?: CallOverrides): Promise<number>;
   };
 
   filters: {
@@ -819,14 +819,14 @@ export interface CircleIntegration extends BaseContract {
       implementation?: PromiseOrValue<string> | null,
     ): UpgradedEventFilter;
 
-    'WormholeFinalityUpdated(uint8,uint8)'(
+    'DeltaswapFinalityUpdated(uint8,uint8)'(
       oldFinality?: PromiseOrValue<BigNumberish> | null,
       newFinality?: PromiseOrValue<BigNumberish> | null,
-    ): WormholeFinalityUpdatedEventFilter;
-    WormholeFinalityUpdated(
+    ): DeltaswapFinalityUpdatedEventFilter;
+    DeltaswapFinalityUpdated(
       oldFinality?: PromiseOrValue<BigNumberish> | null,
       newFinality?: PromiseOrValue<BigNumberish> | null,
-    ): WormholeFinalityUpdatedEventFilter;
+    ): DeltaswapFinalityUpdatedEventFilter;
   };
 
   estimateGas: {
@@ -914,7 +914,7 @@ export interface CircleIntegration extends BaseContract {
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> },
     ): Promise<BigNumber>;
 
-    updateWormholeFinality(
+    updateDeltaswapFinality(
       encodedMessage: PromiseOrValue<BytesLike>,
       overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<BigNumber>;
@@ -930,9 +930,9 @@ export interface CircleIntegration extends BaseContract {
       overrides?: CallOverrides,
     ): Promise<BigNumber>;
 
-    wormhole(overrides?: CallOverrides): Promise<BigNumber>;
+    deltaswap(overrides?: CallOverrides): Promise<BigNumber>;
 
-    wormholeFinality(overrides?: CallOverrides): Promise<BigNumber>;
+    deltaswapFinality(overrides?: CallOverrides): Promise<BigNumber>;
   };
 
   populateTransaction: {
@@ -1022,7 +1022,7 @@ export interface CircleIntegration extends BaseContract {
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> },
     ): Promise<PopulatedTransaction>;
 
-    updateWormholeFinality(
+    updateDeltaswapFinality(
       encodedMessage: PromiseOrValue<BytesLike>,
       overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<PopulatedTransaction>;
@@ -1038,8 +1038,8 @@ export interface CircleIntegration extends BaseContract {
       overrides?: CallOverrides,
     ): Promise<PopulatedTransaction>;
 
-    wormhole(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    deltaswap(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    wormholeFinality(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    deltaswapFinality(overrides?: CallOverrides): Promise<PopulatedTransaction>;
   };
 }

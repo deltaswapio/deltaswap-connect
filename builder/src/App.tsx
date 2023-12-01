@@ -36,7 +36,7 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import WormholeBridge, {
+import DeltaswapBridge, {
   ChainName,
   MAINNET_CHAINS,
   MainnetChainName,
@@ -44,9 +44,9 @@ import WormholeBridge, {
   TESTNET_CHAINS,
   TestnetChainName,
   Theme,
-  WormholeConnectConfig,
+  DeltaswapConnectConfig,
   defaultTheme,
-} from "@wormhole-foundation/wormhole-connect";
+} from "@deltaswapio/deltaswap-connect";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useDebounce } from "use-debounce";
 import Background from "./Background";
@@ -458,9 +458,9 @@ function App() {
     },
     []
   );
-  // NOTE: the WormholeBridge component is keyed by the stringified version of config
+  // NOTE: the DeltaswapBridge component is keyed by the stringified version of config
   // because otherwise the component did not update on changes
-  const config: WormholeConnectConfig = useMemo(
+  const config: DeltaswapConnectConfig = useMemo(
     () => ({
       env: "testnet", // always testnet for the builder
       rpcs: testnetRpcs,
@@ -516,21 +516,21 @@ function App() {
     const realConfig = { ...config, env, rpcs, networks, tokens };
     const realConfigString = JSON.stringify(realConfig);
     return [
-      `<div id="wormhole-connect" config='${realConfigString}' /></div>
-<script src="https://www.unpkg.com/@wormhole-foundation/wormhole-connect@${versionOrTag}/dist/main.js"${
+      `<div id="deltaswap-connect" config='${realConfigString}' /></div>
+<script src="https://www.unpkg.com/@deltaswapio/deltaswap-connect@${versionOrTag}/dist/main.js"${
         versionOrTag === version
           ? ` integrity="${versionScriptIntegrity}" crossorigin="anonymous"`
           : ""
       }></script>
-<link rel="stylesheet" href="https://www.unpkg.com/@wormhole-foundation/wormhole-connect@${versionOrTag}/dist/main.css"${
+<link rel="stylesheet" href="https://www.unpkg.com/@deltaswapio/deltaswap-connect@${versionOrTag}/dist/main.css"${
         versionOrTag === version
           ? ` integrity="${versionLinkIntegrity}" crossorigin="anonymous"`
           : ""
       }/>`,
-      `import WormholeBridge from '@wormhole-foundation/wormhole-connect';
+      `import DeltaswapBridge from '@deltaswapio/deltaswap-connect';
 function App() {
   return (
-    <WormholeBridge config={${realConfigString}} ${
+    <DeltaswapBridge config={${realConfigString}} ${
         versionOrTag === version ? "" : ` versionOrTag="${versionOrTag}"`
       }/>
   );
@@ -1366,7 +1366,7 @@ function App() {
                     p: 1.5,
                   }}
                   endIcon={<Launch />}
-                  href="https://www.npmjs.com/package/@wormhole-foundation/wormhole-connect"
+                  href="https://www.npmjs.com/package/@deltaswapio/deltaswap-connect"
                   target="_blank"
                 >
                   npm package
@@ -1387,10 +1387,10 @@ function App() {
           {open ? null : (
             <>
               <Typography variant="h2" component="h1" gutterBottom>
-                Wormhole Connect
+                Deltaswap Connect
               </Typography>
               <Typography maxWidth="620px" sx={{ mb: 5 }}>
-                Bring all the functionality and utility of Wormhole right into
+                Bring all the functionality and utility of Deltaswap right into
                 your application and remove all of the complexity.
               </Typography>
               <Typography variant="h4" component="h2" gutterBottom>
@@ -1412,14 +1412,14 @@ function App() {
                   <StepCard
                     number={2}
                     title="Copy Code"
-                    description="Copy the code, access Wormhole Connect on your experience."
+                    description="Copy the code, access Deltaswap Connect on your experience."
                   />
                 </Grid>
                 <Grid item xs={12} md={4} sx={{ mb: 2 }}>
                   <StepCard
                     number={3}
                     title="Deploy"
-                    description="Have your very own Wormhole experience live."
+                    description="Have your very own Deltaswap experience live."
                   />
                 </Grid>
               </Grid>
@@ -1438,7 +1438,7 @@ function App() {
           <Typography variant="h4" component="h2" gutterBottom>
             Preview
           </Typography>
-          <WormholeBridge config={config} key={JSON.stringify(config)} />
+          <DeltaswapBridge config={config} key={JSON.stringify(config)} />
         </Container>
       </Box>
     </Background>

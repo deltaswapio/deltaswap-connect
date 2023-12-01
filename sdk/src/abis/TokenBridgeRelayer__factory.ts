@@ -26,7 +26,7 @@ const _abi = [
       },
       {
         internalType: 'address',
-        name: 'wormhole',
+        name: 'deltaswap',
         type: 'address',
       },
       {
@@ -869,10 +869,10 @@ const _abi = [
   },
   {
     inputs: [],
-    name: 'wormhole',
+    name: 'deltaswap',
     outputs: [
       {
-        internalType: 'contract IWormhole',
+        internalType: 'contract IDeltaswap',
         name: '',
         type: 'address',
       },
@@ -942,7 +942,7 @@ export class TokenBridgeRelayer__factory extends ContractFactory {
 
   override deploy(
     chainId: PromiseOrValue<BigNumberish>,
-    wormhole: PromiseOrValue<string>,
+    deltaswap: PromiseOrValue<string>,
     tokenBridge_: PromiseOrValue<string>,
     wethAddress: PromiseOrValue<string>,
     unwrapWeth_: PromiseOrValue<boolean>,
@@ -950,7 +950,7 @@ export class TokenBridgeRelayer__factory extends ContractFactory {
   ): Promise<TokenBridgeRelayer> {
     return super.deploy(
       chainId,
-      wormhole,
+      deltaswap,
       tokenBridge_,
       wethAddress,
       unwrapWeth_,
@@ -959,7 +959,7 @@ export class TokenBridgeRelayer__factory extends ContractFactory {
   }
   override getDeployTransaction(
     chainId: PromiseOrValue<BigNumberish>,
-    wormhole: PromiseOrValue<string>,
+    deltaswap: PromiseOrValue<string>,
     tokenBridge_: PromiseOrValue<string>,
     wethAddress: PromiseOrValue<string>,
     unwrapWeth_: PromiseOrValue<boolean>,
@@ -967,7 +967,7 @@ export class TokenBridgeRelayer__factory extends ContractFactory {
   ): TransactionRequest {
     return super.getDeployTransaction(
       chainId,
-      wormhole,
+      deltaswap,
       tokenBridge_,
       wethAddress,
       unwrapWeth_,

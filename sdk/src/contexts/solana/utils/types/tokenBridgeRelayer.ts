@@ -23,7 +23,7 @@ export type TokenBridgeRelayer = {
       name: 'initialize';
       docs: [
         "This instruction is be used to generate your program's config.",
-        'And for convenience, we will store Wormhole-related PDAs in the',
+        'And for convenience, we will store Deltaswap-related PDAs in the',
         'config so we can verify these accounts with a simple == constraint.',
         '# Arguments',
         '',
@@ -75,7 +75,7 @@ export type TokenBridgeRelayer = {
           isMut: false;
           isSigner: false;
           docs: [
-            'that holds data; it is purely just a signer for posting Wormhole',
+            'that holds data; it is purely just a signer for posting Deltaswap',
             'messages on behalf of the Token Bridge program.',
           ];
         },
@@ -84,7 +84,7 @@ export type TokenBridgeRelayer = {
           isMut: false;
           isSigner: false;
           docs: [
-            "Token Bridge emitter's sequence account. Like with all Wormhole",
+            "Token Bridge emitter's sequence account. Like with all Deltaswap",
             'emitters, this account keeps track of the sequence number of the last',
             'posted message.',
           ];
@@ -136,8 +136,8 @@ export type TokenBridgeRelayer = {
         '# Arguments',
         '',
         '* `ctx`     - `RegisterForeignContract` context',
-        '* `chain`   - Wormhole Chain ID',
-        '* `address` - Wormhole Emitter Address',
+        '* `chain`   - Deltaswap Chain ID',
+        '* `address` - Deltaswap Emitter Address',
         '* `relayer_fee` - Relayer fee scaled by the `relayer_fee_precision`',
       ];
       accounts: [
@@ -165,7 +165,7 @@ export type TokenBridgeRelayer = {
           isSigner: false;
           docs: [
             'Foreign Contract account. Create this account if an emitter has not been',
-            'registered yet for this Wormhole chain ID. If there already is a',
+            'registered yet for this Deltaswap chain ID. If there already is a',
             'contract address saved in this account, overwrite it.',
           ];
         },
@@ -352,7 +352,7 @@ export type TokenBridgeRelayer = {
         '# Arguments',
         '',
         '* `ctx`   - `UpdateRelayerFee` context',
-        '* `chain` - Wormhole Chain ID',
+        '* `chain` - Deltaswap Chain ID',
         '* `fee`   - Relayer fee scaled by the `relayer_fee_precision`',
       ];
       accounts: [
@@ -817,7 +817,7 @@ export type TokenBridgeRelayer = {
         '- Amount of tokens to swap for native assets on the target chain',
         '* `recipient_chain` - Chain ID of the target chain',
         '* `recipient_address` - Address of the target wallet on the target chain',
-        '* `batch_id` - Nonce of Wormhole message',
+        '* `batch_id` - Nonce of Deltaswap message',
         '* `wrap_native` - Whether to wrap native SOL',
       ];
       accounts: [
@@ -826,7 +826,7 @@ export type TokenBridgeRelayer = {
           isMut: true;
           isSigner: true;
           docs: [
-            'Payer will pay Wormhole fee to transfer tokens and create temporary',
+            'Payer will pay Deltaswap fee to transfer tokens and create temporary',
             'token account.',
           ];
         },
@@ -834,7 +834,7 @@ export type TokenBridgeRelayer = {
           name: 'payerSequence';
           isMut: true;
           isSigner: false;
-          docs: ["Used to keep track of payer's Wormhole sequence number."];
+          docs: ["Used to keep track of payer's Deltaswap sequence number."];
         },
         {
           name: 'config';
@@ -854,7 +854,7 @@ export type TokenBridgeRelayer = {
             'account. Funnily enough, the Token Bridge program does not have any',
             'requirements for outbound transfers for the recipient chain to be',
             'registered. This account provides extra protection against sending',
-            'tokens to an unregistered Wormhole chain ID. Read-only.',
+            'tokens to an unregistered Deltaswap chain ID. Read-only.',
           ];
         },
         {
@@ -917,12 +917,12 @@ export type TokenBridgeRelayer = {
           isSigner: false;
         },
         {
-          name: 'wormholeBridge';
+          name: 'deltaswapBridge';
           isMut: true;
           isSigner: false;
         },
         {
-          name: 'wormholeMessage';
+          name: 'deltaswapMessage';
           isMut: true;
           isSigner: false;
           docs: [
@@ -940,7 +940,7 @@ export type TokenBridgeRelayer = {
           isSigner: false;
         },
         {
-          name: 'wormholeFeeCollector';
+          name: 'deltaswapFeeCollector';
           isMut: true;
           isSigner: false;
         },
@@ -955,7 +955,7 @@ export type TokenBridgeRelayer = {
           isSigner: false;
         },
         {
-          name: 'wormholeProgram';
+          name: 'deltaswapProgram';
           isMut: false;
           isSigner: false;
         },
@@ -1022,20 +1022,20 @@ export type TokenBridgeRelayer = {
         '- Amount of tokens to swap for native assets on the target chain',
         '* `recipient_chain` - Chain ID of the target chain',
         '* `recipient_address` - Address of the target wallet on the target chain',
-        '* `batch_id` - Nonce of Wormhole message',
+        '* `batch_id` - Nonce of Deltaswap message',
       ];
       accounts: [
         {
           name: 'payer';
           isMut: true;
           isSigner: true;
-          docs: ['Payer will pay Wormhole fee to transfer tokens.'];
+          docs: ['Payer will pay Deltaswap fee to transfer tokens.'];
         },
         {
           name: 'payerSequence';
           isMut: true;
           isSigner: false;
-          docs: ["Used to keep track of payer's Wormhole sequence number."];
+          docs: ["Used to keep track of payer's Deltaswap sequence number."];
         },
         {
           name: 'config';
@@ -1054,7 +1054,7 @@ export type TokenBridgeRelayer = {
             'account. Funnily enough, the Token Bridge program does not have any',
             'requirements for outbound transfers for the recipient chain to be',
             'registered. This account provides extra protection against sending',
-            'tokens to an unregistered Wormhole chain ID. Read-only.',
+            'tokens to an unregistered Deltaswap chain ID. Read-only.',
           ];
         },
         {
@@ -1098,7 +1098,7 @@ export type TokenBridgeRelayer = {
           isSigner: false;
           docs: [
             'about the token from its native chain:',
-            '* Wormhole Chain ID',
+            '* Deltaswap Chain ID',
             "* Token's native contract address",
             "* Token's native decimals",
           ];
@@ -1114,12 +1114,12 @@ export type TokenBridgeRelayer = {
           isSigner: false;
         },
         {
-          name: 'wormholeBridge';
+          name: 'deltaswapBridge';
           isMut: true;
           isSigner: false;
         },
         {
-          name: 'wormholeMessage';
+          name: 'deltaswapMessage';
           isMut: true;
           isSigner: false;
           docs: ['tokens transferred in this account.'];
@@ -1135,12 +1135,12 @@ export type TokenBridgeRelayer = {
           isSigner: false;
         },
         {
-          name: 'wormholeFeeCollector';
+          name: 'deltaswapFeeCollector';
           isMut: true;
           isSigner: false;
         },
         {
-          name: 'wormholeProgram';
+          name: 'deltaswapProgram';
           isMut: false;
           isSigner: false;
         },
@@ -1217,7 +1217,7 @@ export type TokenBridgeRelayer = {
           isMut: true;
           isSigner: true;
           docs: [
-            'Payer will pay Wormhole fee to transfer tokens and create temporary',
+            'Payer will pay Deltaswap fee to transfer tokens and create temporary',
             'token account.',
           ];
         },
@@ -1255,7 +1255,7 @@ export type TokenBridgeRelayer = {
           docs: [
             'Mint info. This is the SPL token that will be bridged over from the',
             'foreign contract. This must match the token address specified in the',
-            'signed Wormhole message. Read-only.',
+            'signed Deltaswap message. Read-only.',
           ];
         },
         {
@@ -1309,7 +1309,7 @@ export type TokenBridgeRelayer = {
           isMut: false;
           isSigner: false;
           docs: [
-            'Verified Wormhole message account. The Wormhole program verified',
+            'Verified Deltaswap message account. The Deltaswap program verified',
             'signatures and posted the account data here. Read-only.',
           ];
         },
@@ -1351,7 +1351,7 @@ export type TokenBridgeRelayer = {
           isSigner: false;
         },
         {
-          name: 'wormholeProgram';
+          name: 'deltaswapProgram';
           isMut: false;
           isSigner: false;
         },
@@ -1405,7 +1405,7 @@ export type TokenBridgeRelayer = {
           isMut: true;
           isSigner: true;
           docs: [
-            'Payer will pay Wormhole fee to transfer tokens and create temporary',
+            'Payer will pay Deltaswap fee to transfer tokens and create temporary',
             'token account.',
           ];
         },
@@ -1443,7 +1443,7 @@ export type TokenBridgeRelayer = {
           docs: [
             'Token Bridge wrapped mint info. This is the SPL token that will be',
             'bridged from the foreign contract. The wrapped mint PDA must agree',
-            "with the native token's metadata in the wormhole message. Mutable.",
+            "with the native token's metadata in the deltaswap message. Mutable.",
           ];
         },
         {
@@ -1493,7 +1493,7 @@ export type TokenBridgeRelayer = {
           isSigner: false;
           docs: [
             'about the token from its native chain:',
-            '* Wormhole Chain ID',
+            '* Deltaswap Chain ID',
             "* Token's native contract address",
             "* Token's native decimals",
           ];
@@ -1508,7 +1508,7 @@ export type TokenBridgeRelayer = {
           isMut: false;
           isSigner: false;
           docs: [
-            'Verified Wormhole message account. The Wormhole program verified',
+            'Verified Deltaswap message account. The Deltaswap program verified',
             'signatures and posted the account data here. Read-only.',
           ];
         },
@@ -1544,7 +1544,7 @@ export type TokenBridgeRelayer = {
           isSigner: false;
         },
         {
-          name: 'wormholeProgram';
+          name: 'deltaswapProgram';
           isMut: false;
           isSigner: false;
         },
@@ -1795,13 +1795,13 @@ export type TokenBridgeRelayer = {
   errors: [
     {
       code: 6000;
-      name: 'InvalidWormholeBridge';
-      msg: 'InvalidWormholeBridge';
+      name: 'InvalidDeltaswapBridge';
+      msg: 'InvalidDeltaswapBridge';
     },
     {
       code: 6001;
-      name: 'InvalidWormholeFeeCollector';
-      msg: 'InvalidWormholeFeeCollector';
+      name: 'InvalidDeltaswapFeeCollector';
+      msg: 'InvalidDeltaswapFeeCollector';
     },
     {
       code: 6002;
@@ -2006,7 +2006,7 @@ export const IDL: TokenBridgeRelayer = {
       name: 'initialize',
       docs: [
         "This instruction is be used to generate your program's config.",
-        'And for convenience, we will store Wormhole-related PDAs in the',
+        'And for convenience, we will store Deltaswap-related PDAs in the',
         'config so we can verify these accounts with a simple == constraint.',
         '# Arguments',
         '',
@@ -2058,7 +2058,7 @@ export const IDL: TokenBridgeRelayer = {
           isMut: false,
           isSigner: false,
           docs: [
-            'that holds data; it is purely just a signer for posting Wormhole',
+            'that holds data; it is purely just a signer for posting Deltaswap',
             'messages on behalf of the Token Bridge program.',
           ],
         },
@@ -2067,7 +2067,7 @@ export const IDL: TokenBridgeRelayer = {
           isMut: false,
           isSigner: false,
           docs: [
-            "Token Bridge emitter's sequence account. Like with all Wormhole",
+            "Token Bridge emitter's sequence account. Like with all Deltaswap",
             'emitters, this account keeps track of the sequence number of the last',
             'posted message.',
           ],
@@ -2119,8 +2119,8 @@ export const IDL: TokenBridgeRelayer = {
         '# Arguments',
         '',
         '* `ctx`     - `RegisterForeignContract` context',
-        '* `chain`   - Wormhole Chain ID',
-        '* `address` - Wormhole Emitter Address',
+        '* `chain`   - Deltaswap Chain ID',
+        '* `address` - Deltaswap Emitter Address',
         '* `relayer_fee` - Relayer fee scaled by the `relayer_fee_precision`',
       ],
       accounts: [
@@ -2148,7 +2148,7 @@ export const IDL: TokenBridgeRelayer = {
           isSigner: false,
           docs: [
             'Foreign Contract account. Create this account if an emitter has not been',
-            'registered yet for this Wormhole chain ID. If there already is a',
+            'registered yet for this Deltaswap chain ID. If there already is a',
             'contract address saved in this account, overwrite it.',
           ],
         },
@@ -2335,7 +2335,7 @@ export const IDL: TokenBridgeRelayer = {
         '# Arguments',
         '',
         '* `ctx`   - `UpdateRelayerFee` context',
-        '* `chain` - Wormhole Chain ID',
+        '* `chain` - Deltaswap Chain ID',
         '* `fee`   - Relayer fee scaled by the `relayer_fee_precision`',
       ],
       accounts: [
@@ -2800,7 +2800,7 @@ export const IDL: TokenBridgeRelayer = {
         '- Amount of tokens to swap for native assets on the target chain',
         '* `recipient_chain` - Chain ID of the target chain',
         '* `recipient_address` - Address of the target wallet on the target chain',
-        '* `batch_id` - Nonce of Wormhole message',
+        '* `batch_id` - Nonce of Deltaswap message',
         '* `wrap_native` - Whether to wrap native SOL',
       ],
       accounts: [
@@ -2809,7 +2809,7 @@ export const IDL: TokenBridgeRelayer = {
           isMut: true,
           isSigner: true,
           docs: [
-            'Payer will pay Wormhole fee to transfer tokens and create temporary',
+            'Payer will pay Deltaswap fee to transfer tokens and create temporary',
             'token account.',
           ],
         },
@@ -2817,7 +2817,7 @@ export const IDL: TokenBridgeRelayer = {
           name: 'payerSequence',
           isMut: true,
           isSigner: false,
-          docs: ["Used to keep track of payer's Wormhole sequence number."],
+          docs: ["Used to keep track of payer's Deltaswap sequence number."],
         },
         {
           name: 'config',
@@ -2837,7 +2837,7 @@ export const IDL: TokenBridgeRelayer = {
             'account. Funnily enough, the Token Bridge program does not have any',
             'requirements for outbound transfers for the recipient chain to be',
             'registered. This account provides extra protection against sending',
-            'tokens to an unregistered Wormhole chain ID. Read-only.',
+            'tokens to an unregistered Deltaswap chain ID. Read-only.',
           ],
         },
         {
@@ -2900,12 +2900,12 @@ export const IDL: TokenBridgeRelayer = {
           isSigner: false,
         },
         {
-          name: 'wormholeBridge',
+          name: 'deltaswapBridge',
           isMut: true,
           isSigner: false,
         },
         {
-          name: 'wormholeMessage',
+          name: 'deltaswapMessage',
           isMut: true,
           isSigner: false,
           docs: [
@@ -2923,7 +2923,7 @@ export const IDL: TokenBridgeRelayer = {
           isSigner: false,
         },
         {
-          name: 'wormholeFeeCollector',
+          name: 'deltaswapFeeCollector',
           isMut: true,
           isSigner: false,
         },
@@ -2938,7 +2938,7 @@ export const IDL: TokenBridgeRelayer = {
           isSigner: false,
         },
         {
-          name: 'wormholeProgram',
+          name: 'deltaswapProgram',
           isMut: false,
           isSigner: false,
         },
@@ -3005,20 +3005,20 @@ export const IDL: TokenBridgeRelayer = {
         '- Amount of tokens to swap for native assets on the target chain',
         '* `recipient_chain` - Chain ID of the target chain',
         '* `recipient_address` - Address of the target wallet on the target chain',
-        '* `batch_id` - Nonce of Wormhole message',
+        '* `batch_id` - Nonce of Deltaswap message',
       ],
       accounts: [
         {
           name: 'payer',
           isMut: true,
           isSigner: true,
-          docs: ['Payer will pay Wormhole fee to transfer tokens.'],
+          docs: ['Payer will pay Deltaswap fee to transfer tokens.'],
         },
         {
           name: 'payerSequence',
           isMut: true,
           isSigner: false,
-          docs: ["Used to keep track of payer's Wormhole sequence number."],
+          docs: ["Used to keep track of payer's Deltaswap sequence number."],
         },
         {
           name: 'config',
@@ -3037,7 +3037,7 @@ export const IDL: TokenBridgeRelayer = {
             'account. Funnily enough, the Token Bridge program does not have any',
             'requirements for outbound transfers for the recipient chain to be',
             'registered. This account provides extra protection against sending',
-            'tokens to an unregistered Wormhole chain ID. Read-only.',
+            'tokens to an unregistered Deltaswap chain ID. Read-only.',
           ],
         },
         {
@@ -3081,7 +3081,7 @@ export const IDL: TokenBridgeRelayer = {
           isSigner: false,
           docs: [
             'about the token from its native chain:',
-            '* Wormhole Chain ID',
+            '* Deltaswap Chain ID',
             "* Token's native contract address",
             "* Token's native decimals",
           ],
@@ -3097,12 +3097,12 @@ export const IDL: TokenBridgeRelayer = {
           isSigner: false,
         },
         {
-          name: 'wormholeBridge',
+          name: 'deltaswapBridge',
           isMut: true,
           isSigner: false,
         },
         {
-          name: 'wormholeMessage',
+          name: 'deltaswapMessage',
           isMut: true,
           isSigner: false,
           docs: ['tokens transferred in this account.'],
@@ -3118,12 +3118,12 @@ export const IDL: TokenBridgeRelayer = {
           isSigner: false,
         },
         {
-          name: 'wormholeFeeCollector',
+          name: 'deltaswapFeeCollector',
           isMut: true,
           isSigner: false,
         },
         {
-          name: 'wormholeProgram',
+          name: 'deltaswapProgram',
           isMut: false,
           isSigner: false,
         },
@@ -3200,7 +3200,7 @@ export const IDL: TokenBridgeRelayer = {
           isMut: true,
           isSigner: true,
           docs: [
-            'Payer will pay Wormhole fee to transfer tokens and create temporary',
+            'Payer will pay Deltaswap fee to transfer tokens and create temporary',
             'token account.',
           ],
         },
@@ -3238,7 +3238,7 @@ export const IDL: TokenBridgeRelayer = {
           docs: [
             'Mint info. This is the SPL token that will be bridged over from the',
             'foreign contract. This must match the token address specified in the',
-            'signed Wormhole message. Read-only.',
+            'signed Deltaswap message. Read-only.',
           ],
         },
         {
@@ -3292,7 +3292,7 @@ export const IDL: TokenBridgeRelayer = {
           isMut: false,
           isSigner: false,
           docs: [
-            'Verified Wormhole message account. The Wormhole program verified',
+            'Verified Deltaswap message account. The Deltaswap program verified',
             'signatures and posted the account data here. Read-only.',
           ],
         },
@@ -3334,7 +3334,7 @@ export const IDL: TokenBridgeRelayer = {
           isSigner: false,
         },
         {
-          name: 'wormholeProgram',
+          name: 'deltaswapProgram',
           isMut: false,
           isSigner: false,
         },
@@ -3388,7 +3388,7 @@ export const IDL: TokenBridgeRelayer = {
           isMut: true,
           isSigner: true,
           docs: [
-            'Payer will pay Wormhole fee to transfer tokens and create temporary',
+            'Payer will pay Deltaswap fee to transfer tokens and create temporary',
             'token account.',
           ],
         },
@@ -3426,7 +3426,7 @@ export const IDL: TokenBridgeRelayer = {
           docs: [
             'Token Bridge wrapped mint info. This is the SPL token that will be',
             'bridged from the foreign contract. The wrapped mint PDA must agree',
-            "with the native token's metadata in the wormhole message. Mutable.",
+            "with the native token's metadata in the deltaswap message. Mutable.",
           ],
         },
         {
@@ -3476,7 +3476,7 @@ export const IDL: TokenBridgeRelayer = {
           isSigner: false,
           docs: [
             'about the token from its native chain:',
-            '* Wormhole Chain ID',
+            '* Deltaswap Chain ID',
             "* Token's native contract address",
             "* Token's native decimals",
           ],
@@ -3491,7 +3491,7 @@ export const IDL: TokenBridgeRelayer = {
           isMut: false,
           isSigner: false,
           docs: [
-            'Verified Wormhole message account. The Wormhole program verified',
+            'Verified Deltaswap message account. The Deltaswap program verified',
             'signatures and posted the account data here. Read-only.',
           ],
         },
@@ -3527,7 +3527,7 @@ export const IDL: TokenBridgeRelayer = {
           isSigner: false,
         },
         {
-          name: 'wormholeProgram',
+          name: 'deltaswapProgram',
           isMut: false,
           isSigner: false,
         },
@@ -3778,13 +3778,13 @@ export const IDL: TokenBridgeRelayer = {
   errors: [
     {
       code: 6000,
-      name: 'InvalidWormholeBridge',
-      msg: 'InvalidWormholeBridge',
+      name: 'InvalidDeltaswapBridge',
+      msg: 'InvalidDeltaswapBridge',
     },
     {
       code: 6001,
-      name: 'InvalidWormholeFeeCollector',
-      msg: 'InvalidWormholeFeeCollector',
+      name: 'InvalidDeltaswapFeeCollector',
+      msg: 'InvalidDeltaswapFeeCollector',
     },
     {
       code: 6002,

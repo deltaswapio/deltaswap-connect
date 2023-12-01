@@ -1,10 +1,10 @@
 {
-  "name": "wormhole-foundation",
+  "name": "deltaswapio",
   "private": true,
   "workspaces": [
     "sdk",
-    "wormhole-connect",
-    "wormhole-connect-loader",
+    "deltaswap-connect",
+    "deltaswap-connect-loader",
     "builder"
   ],
   "scripts": {
@@ -12,9 +12,9 @@
     "compile": "npm run compile --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present",
     "lint:ci": "npm run lint:ci --workspaces --if-present",
-    "wormhole-connect": "npm run workspace @wormhole-foundation/wormhole-connect",
-    "sdk": "npm run workspace @wormhole-foundation/wormhole-connect-sdk",
-    "builder": "npm run workspace wormhole-connect-builder",
+    "deltaswap-connect": "npm run workspace @deltaswapio/deltaswap-connect",
+    "sdk": "npm run workspace @deltaswapio/deltaswap-connect-sdk",
+    "builder": "npm run workspace deltaswap-connect-builder",
     "prettier": "npm run prettier --workspaces --if-present",
     "prepare": "husky install"
   },

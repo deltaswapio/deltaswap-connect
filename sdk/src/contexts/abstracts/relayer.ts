@@ -14,7 +14,7 @@ import { TokenBridgeAbstract } from './tokenBridge';
  * A standard set of methods for interacting with the Token Bridge Relayer contracts across any of the supported chains
  *
  * @example
- * const context = Wormhole.getContext(chain); // get the chain Context
+ * const context = Deltaswap.getContext(chain); // get the chain Context
  * const hasRelayer = context.relaySupported(chain);
  * if (hasRelayer) {
  *   // call any of the supported methods in a standardized uniform fashion

@@ -6,7 +6,7 @@ import {
 } from '@solana/web3.js';
 import { TOKEN_PROGRAM_ID } from '@solana/spl-token';
 import { createReadOnlyTokenBridgeProgramInterface } from '../program';
-import { getPostMessageCpiAccounts } from '../../wormhole';
+import { getPostMessageCpiAccounts } from '../../deltaswap';
 import {
   deriveAuthoritySignerKey,
   deriveCustodySignerKey,
@@ -18,7 +18,7 @@ import {
 export function createTransferNativeWithPayloadInstruction(
   connection: Connection,
   tokenBridgeProgramId: PublicKeyInitData,
-  wormholeProgramId: PublicKeyInitData,
+  deltaswapProgramId: PublicKeyInitData,
   payer: PublicKeyInitData,
   message: PublicKeyInitData,
   from: PublicKeyInitData,
@@ -45,7 +45,7 @@ export function createTransferNativeWithPayloadInstruction(
   return methods._ixFn(...methods._args, {
     accounts: getTransferNativeWithPayloadAccounts(
       tokenBridgeProgramId,
-      wormholeProgramId,
+      deltaswapProgramId,
       payer,
       message,
       from,
@@ -66,22 +66,22 @@ export interface TransferNativeWithPayloadAccounts {
   custody: PublicKey;
   authoritySigner: PublicKey;
   custodySigner: PublicKey;
-  wormholeBridge: PublicKey;
-  wormholeMessage: PublicKey;
-  wormholeEmitter: PublicKey;
-  wormholeSequence: PublicKey;
-  wormholeFeeCollector: PublicKey;
+  deltaswapBridge: PublicKey;
+  deltaswapMessage: PublicKey;
+  deltaswapEmitter: PublicKey;
+  deltaswapSequence: PublicKey;
+  deltaswapFeeCollector: PublicKey;
   clock: PublicKey;
   sender: PublicKey;
   rent: PublicKey;
   systemProgram: PublicKey;
   tokenProgram: PublicKey;
-  wormholeProgram: PublicKey;
+  deltaswapProgram: PublicKey;
 }
 
 export function getTransferNativeWithPayloadAccounts(
   tokenBridgeProgramId: PublicKeyInitData,
-  wormholeProgramId: PublicKeyInitData,
+  deltaswapProgramId: PublicKeyInitData,
   payer: PublicKeyInitData,
   message: PublicKeyInitData,
   from: PublicKeyInitData,
@@ -89,17 +89,17 @@ export function getTransferNativeWithPayloadAccounts(
   cpiProgramId?: PublicKeyInitData,
 ): TransferNativeWithPayloadAccounts {
   const {
-    wormholeBridge,
-    wormholeMessage,
-    wormholeEmitter,
-    wormholeSequence,
-    wormholeFeeCollector,
+    deltaswapBridge,
+    deltaswapMessage,
+    deltaswapEmitter,
+    deltaswapSequence,
+    deltaswapFeeCollector,
     clock,
     rent,
     systemProgram,
   } = getPostMessageCpiAccounts(
     tokenBridgeProgramId,
-    wormholeProgramId,
+    deltaswapProgramId,
     payer,
     message,
   );
@@ -111,11 +111,11 @@ export function getTransferNativeWithPayloadAccounts(
     custody: deriveCustodyKey(tokenBridgeProgramId, mint),
     authoritySigner: deriveAuthoritySignerKey(tokenBridgeProgramId),
     custodySigner: deriveCustodySignerKey(tokenBridgeProgramId),
-    wormholeBridge,
-    wormholeMessage: wormholeMessage,
-    wormholeEmitter,
-    wormholeSequence,
-    wormholeFeeCollector,
+    deltaswapBridge,
+    deltaswapMessage: deltaswapMessage,
+    deltaswapEmitter,
+    deltaswapSequence,
+    deltaswapFeeCollector,
     clock,
     sender: new PublicKey(
       cpiProgramId === undefined ? payer : deriveSenderAccountKey(cpiProgramId),
@@ -123,6 +123,6 @@ export function getTransferNativeWithPayloadAccounts(
     rent,
     systemProgram,
     tokenProgram: TOKEN_PROGRAM_ID,
-    wormholeProgram: new PublicKey(wormholeProgramId),
+    deltaswapProgram: new PublicKey(deltaswapProgramId),
   };
 }

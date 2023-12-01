@@ -18,14 +18,14 @@ import {
   getOriginalAssetSui,
   redeemOnSui,
   transferFromSui,
-} from '@certusone/wormhole-sdk';
+} from '@certusone/deltaswap-sdk';
 import {
   getFieldsFromObjectResponse,
   getObjectFields,
   getPackageId,
   getTableKeyType,
   trimSuiType,
-} from '@certusone/wormhole-sdk/lib/esm/sui';
+} from '@certusone/deltaswap-sdk/lib/esm/sui';
 import { arrayify, hexlify } from 'ethers/lib/utils';
 import {
   ChainId,
@@ -37,14 +37,14 @@ import {
   TokenId,
 } from '../../types';
 import { parseTokenTransferPayload } from '../../vaa';
-import { WormholeContext } from '../../wormhole';
+import { DeltaswapContext } from '../../deltaswap';
 import { RelayerAbstract } from '../abstracts/relayer';
 import { SuiContracts } from './contracts';
 import { SuiRelayer } from './relayer';
 import { ForeignAssetCache } from '../../utils';
 
 export class SuiContext<
-  T extends WormholeContext,
+  T extends DeltaswapContext,
 > extends RelayerAbstract<TransactionBlock> {
   readonly type = Context.SUI;
   protected contracts: SuiContracts<T>;
@@ -129,7 +129,7 @@ export class SuiContext<
       amountBigInt,
       recipientChainId,
       formattedRecipientAccount,
-      BigInt(0), // TODO: wormhole fee
+      BigInt(0), // TODO: deltaswap fee
       relayerFeeBigInt,
       payload,
       undefined,
@@ -387,10 +387,10 @@ export class SuiContext<
       options: { showEvents: true, showEffects: true, showInput: true },
     });
     const message = txBlock.events?.find((event) =>
-      event.type.endsWith('WormholeMessage'),
+      event.type.endsWith('DeltaswapMessage'),
     );
     if (!message || !message.parsedJson) {
-      throw new Error('WormholeMessage not found');
+      throw new Error('DeltaswapMessage not found');
     }
     const { payload, sender: emitterAddress, sequence } = message.parsedJson;
 
@@ -576,7 +576,7 @@ export class SuiContext<
       throw new Error('unable to get token bridge package id');
 
     const tx = new TransactionBlock();
-    const feeAmount = BigInt(0); // TODO: wormhole fee
+    const feeAmount = BigInt(0); // TODO: deltaswap fee
     const [feeCoin] = tx.splitCoins(tx.gas, [tx.pure(feeAmount)]);
     const [transferCoin] = (() => {
       if (coinType === SUI_TYPE_ARG) {
@@ -686,7 +686,7 @@ export class SuiContext<
     return Number(sequence);
   }
 
-  // MODIFIED FROM @certusone/wormhole-sdk
+  // MODIFIED FROM @certusone/deltaswap-sdk
   // These differ in that they include an additional parameter to allow for caching of the `tokenBridgeStateFields`
   async getTokenCoinType(
     provider: JsonRpcProvider,

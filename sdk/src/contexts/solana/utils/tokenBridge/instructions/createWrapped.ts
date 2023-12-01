@@ -8,7 +8,7 @@ import {
 } from '@solana/web3.js';
 import { TOKEN_PROGRAM_ID } from '@solana/spl-token';
 import { createReadOnlyTokenBridgeProgramInterface } from '../program';
-import { deriveClaimKey, derivePostedVaaKey } from '../../wormhole';
+import { deriveClaimKey, derivePostedVaaKey } from '../../deltaswap';
 import {
   deriveEndpointKey,
   deriveMintAuthorityKey,
@@ -28,7 +28,7 @@ import { SplTokenMetadataProgram } from '../../utils';
 export function createCreateWrappedInstruction(
   connection: Connection,
   tokenBridgeProgramId: PublicKeyInitData,
-  wormholeProgramId: PublicKeyInitData,
+  deltaswapProgramId: PublicKeyInitData,
   payer: PublicKeyInitData,
   vaa: SignedVaa | ParsedAttestMetaVaa,
 ): TransactionInstruction {
@@ -41,7 +41,7 @@ export function createCreateWrappedInstruction(
   return methods._ixFn(...methods._args, {
     accounts: getCreateWrappedAccounts(
       tokenBridgeProgramId,
-      wormholeProgramId,
+      deltaswapProgramId,
       payer,
       vaa,
     ) as any,
@@ -66,12 +66,12 @@ export interface CreateWrappedAccounts {
   systemProgram: PublicKey;
   tokenProgram: PublicKey;
   splMetadataProgram: PublicKey;
-  wormholeProgram: PublicKey;
+  deltaswapProgram: PublicKey;
 }
 
 export function getCreateWrappedAccounts(
   tokenBridgeProgramId: PublicKeyInitData,
-  wormholeProgramId: PublicKeyInitData,
+  deltaswapProgramId: PublicKeyInitData,
   payer: PublicKeyInitData,
   vaa: SignedVaa | ParsedAttestMetaVaa,
 ): CreateWrappedAccounts {
@@ -89,7 +89,7 @@ export function getCreateWrappedAccounts(
       parsed.emitterChain,
       parsed.emitterAddress,
     ),
-    vaa: derivePostedVaaKey(wormholeProgramId, parsed.hash),
+    vaa: derivePostedVaaKey(deltaswapProgramId, parsed.hash),
     claim: deriveClaimKey(
       tokenBridgeProgramId,
       parsed.emitterAddress,
@@ -104,6 +104,6 @@ export function getCreateWrappedAccounts(
     systemProgram: SystemProgram.programId,
     tokenProgram: TOKEN_PROGRAM_ID,
     splMetadataProgram: SplTokenMetadataProgram.programId,
-    wormholeProgram: new PublicKey(wormholeProgramId),
+    deltaswapProgram: new PublicKey(deltaswapProgramId),
   };
 }

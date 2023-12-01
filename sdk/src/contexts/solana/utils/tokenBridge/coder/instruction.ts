@@ -52,7 +52,7 @@ export class TokenBridgeInstructionCoder implements InstructionCoder {
 
 /** Solitaire enum of existing the Token Bridge's instructions.
  *
- * https://github.com/certusone/wormhole/blob/main/solana/modules/token_bridge/program/src/lib.rs#L100
+ * https://github.com/certusone/deltaswap/blob/main/solana/modules/token_bridge/program/src/lib.rs#L100
  */
 export enum TokenBridgeInstruction {
   Initialize,
@@ -83,10 +83,10 @@ function encodeTokenBridgeInstructionData(
   return instructionData;
 }
 
-function encodeInitialize({ wormhole }: any): Buffer {
+function encodeInitialize({ deltaswap }: any): Buffer {
   const serialized = Buffer.alloc(32);
   serialized.write(
-    new PublicKey(wormhole).toBuffer().toString('hex'),
+    new PublicKey(deltaswap).toBuffer().toString('hex'),
     0,
     'hex',
   );

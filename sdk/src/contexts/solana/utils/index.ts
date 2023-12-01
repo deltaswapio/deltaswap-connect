@@ -14,13 +14,13 @@ export {
   createVerifySignaturesInstructions as createVerifySignaturesInstructionsSolana,
   createPostVaaInstruction as createPostVaaInstructionSolana,
   createBridgeFeeTransferInstruction,
-  getPostMessageAccounts as getWormholeCpiAccounts,
-} from './wormhole';
+  getPostMessageAccounts as getDeltaswapCpiAccounts,
+} from './deltaswap';
 
 /**
  * @category Solana
  */
-export * from './wormhole/cpi';
+export * from './deltaswap/cpi';
 /**
  * @category Solana
  */

@@ -1,4 +1,4 @@
-import { Network as Environment } from '@certusone/wormhole-sdk';
+import { Network as Environment } from '@certusone/deltaswap-sdk';
 import { BigNumber } from 'ethers';
 import { MainnetChainId, MainnetChainName } from './config/MAINNET';
 import { TestnetChainId, TestnetChainName } from './config/TESTNET';
@@ -7,7 +7,7 @@ import { EthContext, EthContracts } from './contexts/eth';
 import { SolanaContext, SolContracts } from './contexts/solana';
 import { SuiContext, SuiContracts } from './contexts/sui';
 import { SeiContext, SeiContracts } from './contexts/sei';
-import { WormholeContext } from './wormhole';
+import { DeltaswapContext } from './deltaswap';
 import { DevnetChainId, DevnetChainName } from './config/DEVNET';
 import { CosmosContext } from './contexts/cosmos';
 import { CosmosContracts } from './contexts/cosmos/contracts';
@@ -43,8 +43,8 @@ export type Contracts = {
   cctpContracts?: {
     cctpTokenMessenger: string;
     cctpMessageTransmitter: string;
-    wormholeCCTP?: string;
-    wormholeCircleRelayer?: string;
+    deltaswapCCTP?: string;
+    deltaswapCircleRelayer?: string;
   };
   suiOriginalTokenBridgePackageId?: string;
   suiRelayerPackageId?: string;
@@ -63,12 +63,12 @@ export type ChainConfig = {
   cctpDomain?: number;
 };
 
-export type WormholeConfig = {
+export type DeltaswapConfig = {
   env: Environment;
   rpcs: ChainResourceMap;
   rest: ChainResourceMap;
   graphql: ChainResourceMap;
-  wormholeHosts: string[];
+  deltaswapHosts: string[];
   chains: {
     [chain in ChainName]?: ChainConfig;
   };
@@ -82,20 +82,20 @@ export type TokenId = {
 };
 
 export type AnyContext =
-  | EthContext<WormholeContext>
-  | SolanaContext<WormholeContext>
-  | SuiContext<WormholeContext>
-  | AptosContext<WormholeContext>
-  | SeiContext<WormholeContext>
-  | CosmosContext<WormholeContext>;
+  | EthContext<DeltaswapContext>
+  | SolanaContext<DeltaswapContext>
+  | SuiContext<DeltaswapContext>
+  | AptosContext<DeltaswapContext>
+  | SeiContext<DeltaswapContext>
+  | CosmosContext<DeltaswapContext>;
 
 export type AnyContracts =
-  | EthContracts<WormholeContext>
-  | SolContracts<WormholeContext>
-  | SuiContracts<WormholeContext>
-  | AptosContracts<WormholeContext>
-  | SeiContracts<WormholeContext>
-  | CosmosContracts<WormholeContext>;
+  | EthContracts<DeltaswapContext>
+  | SolContracts<DeltaswapContext>
+  | SuiContracts<DeltaswapContext>
+  | AptosContracts<DeltaswapContext>
+  | SeiContracts<DeltaswapContext>
+  | CosmosContracts<DeltaswapContext>;
 
 export interface ParsedMessage {
   sendTx: string;

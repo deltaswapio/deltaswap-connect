@@ -4,13 +4,13 @@ import { solidityKeccak256 } from 'ethers/lib/utils';
 import * as elliptic from 'elliptic';
 
 export interface Signature {
-  guardianSetIndex: number;
+  phylaxSetIndex: number;
   signature: string;
 }
 
 export interface VAA<T> {
   version: number;
-  guardianSetIndex: number;
+  phylaxSetIndex: number;
   signatures: Signature[];
   timestamp: number;
   nonce: number;
@@ -60,7 +60,7 @@ export interface Other {
 
 // All the different types of payloads
 export type Payload =
-  | GuardianSetUpgrade
+  | PhylaxSetUpgrade
   | CoreContractUpgrade
   | PortalContractUpgrade<'TokenBridge'>
   | PortalContractUpgrade<'NFTBridge'>
@@ -78,7 +78,7 @@ export type ContractUpgrade =
 
 export function parse(buffer: Buffer): VAA<Payload | Other> {
   const vaa = parseEnvelope(buffer);
-  const parser = guardianSetUpgradeParser
+  const parser = phylaxSetUpgradeParser
     .or(coreContractUpgradeParser)
     .or(portalContractUpgradeParser('TokenBridge'))
     .or(portalContractUpgradeParser('NFTBridge'))
@@ -125,7 +125,7 @@ export function parseEnvelope(buffer: Buffer): VAA<Buffer> {
 // Parse a signature
 const signatureParser = new Parser()
   .endianess('big')
-  .uint8('guardianSetIndex')
+  .uint8('phylaxSetIndex')
   .array('signature', {
     type: 'uint8',
     lengthInBytes: 65,
@@ -133,7 +133,7 @@ const signatureParser = new Parser()
   });
 
 function serialiseSignature(sig: Signature): string {
-  const body = [encode('uint8', sig.guardianSetIndex), sig.signature];
+  const body = [encode('uint8', sig.phylaxSetIndex), sig.signature];
   return body.join('');
 }
 
@@ -141,7 +141,7 @@ function serialiseSignature(sig: Signature): string {
 const vaaParser = new Parser()
   .endianess('big')
   .uint8('version')
-  .uint32('guardianSetIndex')
+  .uint32('phylaxSetIndex')
   .uint8('signatureCount')
   .array('signatures', {
     type: signatureParser,
@@ -169,7 +169,7 @@ const vaaParser = new Parser()
 export function serialiseVAA(vaa: VAA<Payload>) {
   const body = [
     encode('uint8', vaa.version),
-    encode('uint32', vaa.guardianSetIndex),
+    encode('uint32', vaa.phylaxSetIndex),
     encode('uint8', vaa.signatures.length),
     ...vaa.signatures.map((sig) => serialiseSignature(sig)),
     vaaBody(vaa),
@@ -193,8 +193,8 @@ function vaaBody(vaa: VAA<Payload | Other>) {
     switch (payload.module) {
       case 'Core':
         switch (payload.type) {
-          case 'GuardianSetUpgrade':
-            payload_str = serialiseGuardianSetUpgrade(payload);
+          case 'PhylaxSetUpgrade':
+            payload_str = serialisePhylaxSetUpgrade(payload);
             break;
           case 'ContractUpgrade':
             payload_str = serialiseCoreContractUpgrade(payload);
@@ -271,7 +271,7 @@ export function sign(signers: string[], vaa: VAA<Payload>): Signature[] {
       encode('uint8', signature.recoveryParam),
     ].join('');
     return {
-      guardianSetIndex: i,
+      phylaxSetIndex: i,
       signature: packed,
     };
   });
@@ -286,19 +286,19 @@ const addressParser = (length: number) =>
   });
 
 ////////////////////////////////////////////////////////////////////////////////
-// Guardian set upgrade
+// Phylax set upgrade
 
-export interface GuardianSetUpgrade {
+export interface PhylaxSetUpgrade {
   module: 'Core';
-  type: 'GuardianSetUpgrade';
+  type: 'PhylaxSetUpgrade';
   chain: number;
-  newGuardianSetIndex: number;
-  newGuardianSetLength: number;
-  newGuardianSet: string[];
+  newPhylaxSetIndex: number;
+  newPhylaxSetLength: number;
+  newPhylaxSet: string[];
 }
 
-// Parse a guardian set upgrade payload
-const guardianSetUpgradeParser: P<GuardianSetUpgrade> = new P(
+// Parse a phylax set upgrade payload
+const phylaxSetUpgradeParser: P<PhylaxSetUpgrade> = new P(
   new Parser()
     .endianess('big')
     .string('module', {
@@ -309,14 +309,14 @@ const guardianSetUpgradeParser: P<GuardianSetUpgrade> = new P(
     })
     .uint8('type', {
       assert: 2,
-      formatter: (_action) => 'GuardianSetUpgrade',
+      formatter: (_action) => 'PhylaxSetUpgrade',
     })
     .uint16('chain')
-    .uint32('newGuardianSetIndex')
-    .uint8('newGuardianSetLength')
-    .array('newGuardianSet', {
+    .uint32('newPhylaxSetIndex')
+    .uint8('newPhylaxSetLength')
+    .array('newPhylaxSet', {
       type: addressParser(20),
-      length: 'newGuardianSetLength',
+      length: 'newPhylaxSetLength',
       formatter: (arr: [{ address: string }]) =>
         arr.map((addr) => addr.address),
     })
@@ -326,14 +326,14 @@ const guardianSetUpgradeParser: P<GuardianSetUpgrade> = new P(
     }),
 );
 
-function serialiseGuardianSetUpgrade(payload: GuardianSetUpgrade): string {
+function serialisePhylaxSetUpgrade(payload: PhylaxSetUpgrade): string {
   const body = [
     encode('bytes32', encodeString(payload.module)),
     encode('uint8', 2),
     encode('uint16', payload.chain),
-    encode('uint32', payload.newGuardianSetIndex),
-    encode('uint8', payload.newGuardianSet.length),
-    ...payload.newGuardianSet,
+    encode('uint32', payload.newPhylaxSetIndex),
+    encode('uint8', payload.newPhylaxSet.length),
+    ...payload.newPhylaxSet,
   ];
   return body.join('');
 }

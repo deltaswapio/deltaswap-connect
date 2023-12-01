@@ -1,5 +1,5 @@
 import { Box, Button, ClickAwayListener, Tooltip } from "@mui/material";
-import { Theme } from "@wormhole-foundation/wormhole-connect";
+import { Theme } from "@deltaswapio/deltaswap-connect";
 import { useCallback, useMemo, useState } from "react";
 import {
   Color,

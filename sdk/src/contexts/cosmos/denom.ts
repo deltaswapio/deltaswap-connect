@@ -1,9 +1,9 @@
-import { Network } from '@certusone/wormhole-sdk';
+import { Network } from '@certusone/deltaswap-sdk';
 import { ChainName } from '../../types';
 
 const MAINNET_NATIVE_DENOMS: Record<string, string> = {
   osmosis: 'uosmo',
-  wormchain: 'uworm',
+  deltachain: 'uworm',
   terra2: 'uluna',
   cosmoshub: 'uatom',
   evmos: 'aevmos',
@@ -16,7 +16,7 @@ const TESTNET_NATIVE_DENOMS: Record<string, string> = {
 
 const PREFIXES: Record<string, string> = {
   osmosis: 'osmo',
-  wormchain: 'wormhole',
+  deltachain: 'deltaswap',
   terra2: 'terra',
   cosmoshub: 'cosmos',
   evmos: 'evmos',

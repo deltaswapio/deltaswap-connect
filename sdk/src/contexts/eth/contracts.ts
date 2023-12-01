@@ -1,16 +1,16 @@
-import { ethers_contracts } from '@certusone/wormhole-sdk/lib/esm';
+import { ethers_contracts } from '@certusone/deltaswap-sdk/lib/esm';
 import {
-  Wormhole,
+  Deltaswap,
   Bridge,
   NFTBridge,
-} from '@certusone/wormhole-sdk/lib/esm/ethers-contracts';
+} from '@certusone/deltaswap-sdk/lib/esm/ethers-contracts';
 
 import { ChainName, ChainId, Contracts, Context } from '../../types';
 import { TokenBridgeRelayer } from '../../abis/TokenBridgeRelayer';
 import { TokenBridgeRelayer__factory } from '../../abis/TokenBridgeRelayer__factory';
 import { CircleRelayer__factory } from '../../abis/CircleRelayer__factory';
 import { ContractsAbstract } from '../abstracts/contracts';
-import { WormholeContext } from '../../wormhole';
+import { DeltaswapContext } from '../../deltaswap';
 import { filterByContext } from '../../utils';
 import { ethers } from 'ethers';
 
@@ -19,7 +19,7 @@ import { ethers } from 'ethers';
  * Evm Contracts class. Contains methods for accessing ts interfaces for all available contracts
  */
 export class EthContracts<
-  T extends WormholeContext,
+  T extends DeltaswapContext,
 > extends ContractsAbstract<T> {
   protected _contracts: Map<ChainName, any>;
   readonly context: T;
@@ -47,30 +47,30 @@ export class EthContracts<
   }
 
   /**
-   * Returns core wormhole contract for the chain
+   * Returns core deltaswap contract for the chain
    *
    * @returns An interface for the core contract, undefined if not found
    */
-  getCore(chain: ChainName | ChainId): Wormhole | undefined {
+  getCore(chain: ChainName | ChainId): Deltaswap | undefined {
     const connection = this.context.mustGetConnection(chain);
     const address = this.mustGetContracts(chain).core;
     if (!address) return undefined;
-    return ethers_contracts.Wormhole__factory.connect(address, connection);
+    return ethers_contracts.Deltaswap__factory.connect(address, connection);
   }
 
   /**
-   * Returns core wormhole contract for the chain
+   * Returns core deltaswap contract for the chain
    *
    * @returns An interface for the core contract, errors if not found
    */
-  mustGetCore(chain: ChainName | ChainId): Wormhole {
+  mustGetCore(chain: ChainName | ChainId): Deltaswap {
     const core = this.getCore(chain);
     if (!core) throw new Error(`Core contract for domain ${chain} not found`);
     return core;
   }
 
   /**
-   * Returns wormhole bridge contract for the chain
+   * Returns deltaswap bridge contract for the chain
    *
    * @returns An interface for the bridge contract, undefined if not found
    */
@@ -85,7 +85,7 @@ export class EthContracts<
   }
 
   /**
-   * Returns wormhole bridge contract for the chain
+   * Returns deltaswap bridge contract for the chain
    *
    * @returns An interface for the bridge contract, errors if not found
    */
@@ -100,7 +100,7 @@ export class EthContracts<
   }
 
   /**
-   * Returns wormhole NFT bridge contract for the chain
+   * Returns deltaswap NFT bridge contract for the chain
    *
    * @returns An interface for the NFT bridge contract, undefined if not found
    */
@@ -112,7 +112,7 @@ export class EthContracts<
   }
 
   /**
-   * Returns wormhole NFT bridge contract for the chain
+   * Returns deltaswap NFT bridge contract for the chain
    *
    * @returns An interface for the NFT bridge contract, errors if not found
    */
@@ -124,7 +124,7 @@ export class EthContracts<
   }
 
   /**
-   * Returns wormhole Token Bridge Relayer contract for the chain
+   * Returns deltaswap Token Bridge Relayer contract for the chain
    *
    * @returns An interface for the Token Bridge Relayer contract, undefined if not found
    */
@@ -138,7 +138,7 @@ export class EthContracts<
   }
 
   /**
-   * Returns wormhole Token Bridge Relayer contract for the chain
+   * Returns deltaswap Token Bridge Relayer contract for the chain
    *
    * @returns An interface for the Token Bridge Relayer contract, errors if not found
    */
@@ -152,28 +152,28 @@ export class EthContracts<
   }
 
   /**
-   * Returns wormhole CCTP relayer contract for the chain
+   * Returns deltaswap CCTP relayer contract for the chain
    *
-   * @returns An interface for the Wormhole CCTP relayer contract, undefined if not found
+   * @returns An interface for the Deltaswap CCTP relayer contract, undefined if not found
    */
-  getWormholeCircleRelayer(chain: ChainName | ChainId): any {
+  getDeltaswapCircleRelayer(chain: ChainName | ChainId): any {
     const connection = this.context.mustGetConnection(chain);
     const address =
-      this.mustGetContracts(chain).cctpContracts?.wormholeCircleRelayer;
+      this.mustGetContracts(chain).cctpContracts?.deltaswapCircleRelayer;
     if (!address) return undefined;
     return CircleRelayer__factory.connect(address, connection);
   }
 
   /**
-   * Returns wormhole CCTP relayer contract for the chain
+   * Returns deltaswap CCTP relayer contract for the chain
    *
-   * @returns An interface for the Wormhole CCTP relayer contract, errors if not found
+   * @returns An interface for the Deltaswap CCTP relayer contract, errors if not found
    */
-  mustGetWormholeCircleRelayer(chain: ChainName | ChainId): any {
-    const circleRelayer = this.getWormholeCircleRelayer(chain);
+  mustGetDeltaswapCircleRelayer(chain: ChainName | ChainId): any {
+    const circleRelayer = this.getDeltaswapCircleRelayer(chain);
     if (!circleRelayer)
       throw new Error(
-        `Wormhole Circle relayer contract for domain ${chain} not found`,
+        `Deltaswap Circle relayer contract for domain ${chain} not found`,
       );
     return circleRelayer;
   }

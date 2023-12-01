@@ -1,6 +1,6 @@
 export type NftBridge = {
   version: '0.1.0';
-  name: 'wormhole';
+  name: 'deltaswap';
   instructions: [
     {
       name: 'initialize';
@@ -28,7 +28,7 @@ export type NftBridge = {
       ];
       args: [
         {
-          name: 'wormhole';
+          name: 'deltaswap';
           type: 'publicKey';
         },
       ];
@@ -102,7 +102,7 @@ export type NftBridge = {
           isSigner: false;
         },
         {
-          name: 'wormholeProgram';
+          name: 'deltaswapProgram';
           isMut: false;
           isSigner: false;
         },
@@ -188,7 +188,7 @@ export type NftBridge = {
           isSigner: false;
         },
         {
-          name: 'wormholeProgram';
+          name: 'deltaswapProgram';
           isMut: false;
           isSigner: false;
         },
@@ -259,7 +259,7 @@ export type NftBridge = {
           isSigner: false;
         },
         {
-          name: 'wormholeProgram';
+          name: 'deltaswapProgram';
           isMut: false;
           isSigner: false;
         },
@@ -310,27 +310,27 @@ export type NftBridge = {
           isSigner: false;
         },
         {
-          name: 'wormholeBridge';
+          name: 'deltaswapBridge';
           isMut: true;
           isSigner: false;
         },
         {
-          name: 'wormholeMessage';
+          name: 'deltaswapMessage';
           isMut: true;
           isSigner: true;
         },
         {
-          name: 'wormholeEmitter';
+          name: 'deltaswapEmitter';
           isMut: false;
           isSigner: false;
         },
         {
-          name: 'wormholeSequence';
+          name: 'deltaswapSequence';
           isMut: true;
           isSigner: false;
         },
         {
-          name: 'wormholeFeeCollector';
+          name: 'deltaswapFeeCollector';
           isMut: true;
           isSigner: false;
         },
@@ -360,7 +360,7 @@ export type NftBridge = {
           isSigner: false;
         },
         {
-          name: 'wormholeProgram';
+          name: 'deltaswapProgram';
           isMut: false;
           isSigner: false;
         },
@@ -426,27 +426,27 @@ export type NftBridge = {
           isSigner: false;
         },
         {
-          name: 'wormholeBridge';
+          name: 'deltaswapBridge';
           isMut: true;
           isSigner: false;
         },
         {
-          name: 'wormholeMessage';
+          name: 'deltaswapMessage';
           isMut: true;
           isSigner: true;
         },
         {
-          name: 'wormholeEmitter';
+          name: 'deltaswapEmitter';
           isMut: false;
           isSigner: false;
         },
         {
-          name: 'wormholeSequence';
+          name: 'deltaswapSequence';
           isMut: true;
           isSigner: false;
         },
         {
-          name: 'wormholeFeeCollector';
+          name: 'deltaswapFeeCollector';
           isMut: true;
           isSigner: false;
         },
@@ -476,7 +476,7 @@ export type NftBridge = {
           isSigner: false;
         },
         {
-          name: 'wormholeProgram';
+          name: 'deltaswapProgram';
           isMut: false;
           isSigner: false;
         },
@@ -537,7 +537,7 @@ export type NftBridge = {
           isSigner: false;
         },
         {
-          name: 'wormholeProgram';
+          name: 'deltaswapProgram';
           isMut: false;
           isSigner: false;
         },

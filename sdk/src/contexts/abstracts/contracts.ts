@@ -1,17 +1,17 @@
-import { WormholeContext } from '../../wormhole';
+import { DeltaswapContext } from '../../deltaswap';
 import { ChainName, ChainId } from '../../types';
 
 /**
  * @abstract
  *
- * A standard set of methods for accessing interfaces for Wormhole contracts on a given chain
+ * A standard set of methods for accessing interfaces for Deltaswap contracts on a given chain
  *
  * @example
- * const context = Wormhole.getContext(chain);
+ * const context = Deltaswap.getContext(chain);
  * const coreContract = context.contracts.mustGetCore(chain);
  * coreContract.someMethod(...);
  */
-export abstract class ContractsAbstract<T extends WormholeContext> {
+export abstract class ContractsAbstract<T extends DeltaswapContext> {
   /**
    * Contract addresses mapped to a ChainName
    * @internal
@@ -24,13 +24,13 @@ export abstract class ContractsAbstract<T extends WormholeContext> {
   protected abstract readonly context: T;
 
   /**
-   * Get the core wormhole contract interface
+   * Get the core deltaswap contract interface
    * @param chain The name or ID of a supported chain
    * @returns The contract interface or undefined
    */
   protected abstract getCore(chain: ChainName | ChainId): any | undefined;
   /**
-   * Get the core wormhole contract interface
+   * Get the core deltaswap contract interface
    * @param chain The name or ID of a supported chain
    * @throws Errors if the contract doesn't exist
    * @returns The contract interface
@@ -78,20 +78,20 @@ export abstract class ContractsAbstract<T extends WormholeContext> {
    */
   protected abstract mustGetTokenBridgeRelayer(chain: ChainName | ChainId): any;
   /**
-   * Get the Wormhole CCTP Relayer contract interface
+   * Get the Deltaswap CCTP Relayer contract interface
    * @param chain The name or ID of a supported chain
    * @returns The Token Bridge Relayer contract interface or undefined
    */
-  protected abstract getWormholeCircleRelayer(
+  protected abstract getDeltaswapCircleRelayer(
     chain: ChainName | ChainId,
   ): any | undefined;
   /**
-   * Get the Wormhole CCTP Relayer contract interface
+   * Get the Deltaswap CCTP Relayer contract interface
    * @param chain The name or ID of a supported chain
    * @throws Errors if the contract doesn't exist
    * @returns The Token Bridge Relayer contract interface
    */
-  protected abstract mustGetWormholeCircleRelayer(
+  protected abstract mustGetDeltaswapCircleRelayer(
     chain: ChainName | ChainId,
   ): any;
 }

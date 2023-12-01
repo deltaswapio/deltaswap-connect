@@ -8,7 +8,7 @@ import {
 } from '@solana/web3.js';
 import { TOKEN_PROGRAM_ID } from '@solana/spl-token';
 import { createReadOnlyNftBridgeProgramInterface } from '../program';
-import { derivePostedVaaKey } from '../../wormhole';
+import { derivePostedVaaKey } from '../../deltaswap';
 import {
   deriveEndpointKey,
   deriveNftBridgeConfigKey,
@@ -30,7 +30,7 @@ import {
 export function createCompleteWrappedMetaInstruction(
   connection: Connection,
   nftBridgeProgramId: PublicKeyInitData,
-  wormholeProgramId: PublicKeyInitData,
+  deltaswapProgramId: PublicKeyInitData,
   payer: PublicKeyInitData,
   vaa: SignedVaa | ParsedNftTransferVaa,
 ): TransactionInstruction {
@@ -43,7 +43,7 @@ export function createCompleteWrappedMetaInstruction(
   return methods._ixFn(...methods._args, {
     accounts: getCompleteWrappedMetaAccounts(
       nftBridgeProgramId,
-      wormholeProgramId,
+      deltaswapProgramId,
       payer,
       vaa,
     ) as any,
@@ -67,12 +67,12 @@ export interface CompleteWrappedMetaAccounts {
   systemProgram: PublicKey;
   tokenProgram: PublicKey;
   splMetadataProgram: PublicKey;
-  wormholeProgram: PublicKey;
+  deltaswapProgram: PublicKey;
 }
 
 export function getCompleteWrappedMetaAccounts(
   nftBridgeProgramId: PublicKeyInitData,
-  wormholeProgramId: PublicKeyInitData,
+  deltaswapProgramId: PublicKeyInitData,
   payer: PublicKeyInitData,
   vaa: SignedVaa | ParsedNftTransferVaa,
 ): CompleteWrappedMetaAccounts {
@@ -86,7 +86,7 @@ export function getCompleteWrappedMetaAccounts(
   return {
     payer: new PublicKey(payer),
     config: deriveNftBridgeConfigKey(nftBridgeProgramId),
-    vaa: derivePostedVaaKey(wormholeProgramId, parsed.hash),
+    vaa: derivePostedVaaKey(deltaswapProgramId, parsed.hash),
     endpoint: deriveEndpointKey(
       nftBridgeProgramId,
       parsed.emitterChain,
@@ -100,6 +100,6 @@ export function getCompleteWrappedMetaAccounts(
     systemProgram: SystemProgram.programId,
     tokenProgram: TOKEN_PROGRAM_ID,
     splMetadataProgram: SplTokenMetadataProgram.programId,
-    wormholeProgram: new PublicKey(wormholeProgramId),
+    deltaswapProgram: new PublicKey(deltaswapProgramId),
   };
 }

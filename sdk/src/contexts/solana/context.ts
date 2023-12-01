@@ -4,7 +4,7 @@ import {
   getForeignAssetSolana,
   redeemAndUnwrapOnSolana,
   redeemOnSolana,
-} from '@certusone/wormhole-sdk';
+} from '@certusone/deltaswap-sdk';
 import {
   ACCOUNT_SIZE,
   ASSOCIATED_TOKEN_PROGRAM_ID,
@@ -50,7 +50,7 @@ import {
   ParsedRelayerMessage,
 } from '../../types';
 import { SolContracts } from './contracts';
-import { WormholeContext } from '../../wormhole';
+import { DeltaswapContext } from '../../deltaswap';
 import {
   createTransferNativeInstruction,
   createTransferWrappedInstruction,
@@ -60,10 +60,10 @@ import {
 } from './utils/tokenBridge';
 import {
   deriveClaimKey,
-  deriveWormholeEmitterKey,
+  deriveDeltaswapEmitterKey,
   getClaim,
   getPostedMessage,
-} from './utils/wormhole';
+} from './utils/deltaswap';
 import { ForeignAssetCache } from '../../utils';
 import { RelayerAbstract } from '../abstracts/relayer';
 import {
@@ -83,7 +83,7 @@ const SOLANA_TESTNET_EMITTER_ID =
  * @category Solana
  */
 export class SolanaContext<
-  T extends WormholeContext,
+  T extends DeltaswapContext,
 > extends RelayerAbstract<Transaction> {
   readonly type = Context.SOLANA;
   readonly contracts: SolContracts<T>;
@@ -280,7 +280,7 @@ export class SolanaContext<
   /**
    * Prepare the transfer instructions for a native token bridge transfer from Solana
    *
-   * @dev This _must_ be claimed on the destination chain, see {@link WormholeContext#redeem | redeem}
+   * @dev This _must_ be claimed on the destination chain, see {@link DeltaswapContext#redeem | redeem}
    *
    * @param senderAddress The address of the sender
    * @param amount The token amount to be sent
@@ -401,7 +401,7 @@ export class SolanaContext<
   /**
    * Prepare the transfer instructions for a token bridge transfer from Solana
    *
-   * @dev This _must_ be claimed on the destination chain, see {@link WormholeContext#redeem | redeem}
+   * @dev This _must_ be claimed on the destination chain, see {@link DeltaswapContext#redeem | redeem}
    *
    * @param senderAddress The address of the sender
    * @param amount The token amount to be sent
@@ -760,19 +760,19 @@ export class SolanaContext<
 
     // the first instruction may be creating the associated token account
     // for an automatic transfer of the native token
-    const wormholeInstructionIndex =
+    const deltaswapInstructionIndex =
       response.meta?.innerInstructions.length - 1;
     const instructions =
-      response.meta?.innerInstructions![wormholeInstructionIndex].instructions;
+      response.meta?.innerInstructions![deltaswapInstructionIndex].instructions;
     const accounts = response.transaction.message.accountKeys;
 
-    // find the instruction where the programId equals the Wormhole ProgramId and the emitter equals the Token Bridge
+    // find the instruction where the programId equals the Deltaswap ProgramId and the emitter equals the Token Bridge
     const bridgeInstructions = instructions.filter((i) => {
       const programId = accounts[i.programIdIndex].toString();
       const emitterId = accounts[i.accounts[2]];
-      const wormholeCore = contracts.core;
-      const tokenBridge = deriveWormholeEmitterKey(contracts.token_bridge!);
-      return programId === wormholeCore && emitterId.equals(tokenBridge);
+      const deltaswapCore = contracts.core;
+      const tokenBridge = deriveDeltaswapEmitterKey(contracts.token_bridge!);
+      return programId === deltaswapCore && emitterId.equals(tokenBridge);
     });
 
     const { message } = await getPostedMessage(

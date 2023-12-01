@@ -9,7 +9,7 @@ import {
   Context,
   ParsedRelayerPayload,
 } from '../../types';
-import { WormholeContext } from '../../wormhole';
+import { DeltaswapContext } from '../../deltaswap';
 import { TokenBridgeAbstract } from '../abstracts/tokenBridge';
 import { AptosContracts } from './contracts';
 import { AptosClient, CoinClient, Types } from 'aptos';
@@ -22,7 +22,7 @@ import {
   parseTokenTransferPayload,
   redeemOnAptos,
   transferFromAptos,
-} from '@certusone/wormhole-sdk';
+} from '@certusone/deltaswap-sdk';
 import { arrayify, hexlify, stripZeros, zeroPad } from 'ethers/lib/utils';
 import { sha3_256 } from 'js-sha3';
 import { ForeignAssetCache } from '../../utils';
@@ -39,7 +39,7 @@ export type CoinBalance = {
   amount: number;
 };
 export class AptosContext<
-  T extends WormholeContext,
+  T extends DeltaswapContext,
 > extends TokenBridgeAbstract<Types.EntryFunctionPayload> {
   readonly type = Context.APTOS;
   protected contracts: AptosContracts<T>;
@@ -272,10 +272,10 @@ export class AptosContext<
     }
     const userTransaction = transaction as Types.UserTransaction;
     const message = userTransaction.events.find((event) =>
-      event.type.endsWith('WormholeMessage'),
+      event.type.endsWith('DeltaswapMessage'),
     );
     if (!message || !message.data) {
-      throw new Error(`WormholeMessage not found for ${tx}`);
+      throw new Error(`DeltaswapMessage not found for ${tx}`);
     }
 
     const { payload, sender, sequence } = message.data;

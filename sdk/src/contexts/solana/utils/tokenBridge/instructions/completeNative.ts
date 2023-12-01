@@ -8,7 +8,7 @@ import {
 } from '@solana/web3.js';
 import { TOKEN_PROGRAM_ID } from '@solana/spl-token';
 import { createReadOnlyTokenBridgeProgramInterface } from '../program';
-import { deriveClaimKey, derivePostedVaaKey } from '../../wormhole';
+import { deriveClaimKey, derivePostedVaaKey } from '../../deltaswap';
 import {
   deriveEndpointKey,
   deriveTokenBridgeConfigKey,
@@ -25,7 +25,7 @@ import {
 export function createCompleteTransferNativeInstruction(
   connection: Connection,
   tokenBridgeProgramId: PublicKeyInitData,
-  wormholeProgramId: PublicKeyInitData,
+  deltaswapProgramId: PublicKeyInitData,
   payer: PublicKeyInitData,
   vaa: SignedVaa | ParsedTokenTransferVaa,
   feeRecipient?: PublicKeyInitData,
@@ -39,7 +39,7 @@ export function createCompleteTransferNativeInstruction(
   return methods._ixFn(...methods._args, {
     accounts: getCompleteTransferNativeAccounts(
       tokenBridgeProgramId,
-      wormholeProgramId,
+      deltaswapProgramId,
       payer,
       vaa,
       feeRecipient,
@@ -65,12 +65,12 @@ export interface CompleteTransferNativeAccounts {
   rent: PublicKey;
   systemProgram: PublicKey;
   tokenProgram: PublicKey;
-  wormholeProgram: PublicKey;
+  deltaswapProgram: PublicKey;
 }
 
 export function getCompleteTransferNativeAccounts(
   tokenBridgeProgramId: PublicKeyInitData,
-  wormholeProgramId: PublicKeyInitData,
+  deltaswapProgramId: PublicKeyInitData,
   payer: PublicKeyInitData,
   vaa: SignedVaa | ParsedTokenTransferVaa,
   feeRecipient?: PublicKeyInitData,
@@ -80,7 +80,7 @@ export function getCompleteTransferNativeAccounts(
   return {
     payer: new PublicKey(payer),
     config: deriveTokenBridgeConfigKey(tokenBridgeProgramId),
-    vaa: derivePostedVaaKey(wormholeProgramId, parsed.hash),
+    vaa: derivePostedVaaKey(deltaswapProgramId, parsed.hash),
     claim: deriveClaimKey(
       tokenBridgeProgramId,
       parsed.emitterAddress,
@@ -102,6 +102,6 @@ export function getCompleteTransferNativeAccounts(
     rent: SYSVAR_RENT_PUBKEY,
     systemProgram: SystemProgram.programId,
     tokenProgram: TOKEN_PROGRAM_ID,
-    wormholeProgram: new PublicKey(wormholeProgramId),
+    deltaswapProgram: new PublicKey(deltaswapProgramId),
   };
 }

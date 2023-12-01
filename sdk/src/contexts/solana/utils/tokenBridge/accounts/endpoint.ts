@@ -7,7 +7,7 @@ import {
 import { ChainId } from '../../../../../types';
 import { MAINNET_CHAINS } from '../../../../../config/MAINNET';
 import { deriveAddress, getAccountData } from '../../utils';
-import { tryNativeToUint8Array } from '@certusone/wormhole-sdk';
+import { tryNativeToUint8Array } from '@certusone/deltaswap-sdk';
 
 export function deriveEndpointKey(
   tokenBridgeProgramId: PublicKeyInitData,

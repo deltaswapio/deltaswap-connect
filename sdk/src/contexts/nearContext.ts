@@ -2,15 +2,15 @@
 // import {
 //   getIsWrappedAssetNear,
 //   uint8ArrayToHex,
-// } from '@certusone/wormhole-sdk';
+// } from '@certusone/deltaswap-sdk';
 // import { Account, connect } from 'near-api-js';
 // import BN from 'bn.js';
 // import { arrayify, sha256 } from 'ethers/lib/utils';
-// import { WormholeContext } from '../wormhole';
+// import { DeltaswapContext } from '../deltaswap';
 // import { BridgeAbstract } from './abstracts';
 // import { TokenId, ChainName, ChainId, NATIVE } from '../types';
 
-// export class NearContext<T extends WormholeContext> extends BridgeAbstract {
+// export class NearContext<T extends DeltaswapContext> extends BridgeAbstract {
 //   readonly context: T;
 
 //   constructor(context: T) {
@@ -82,7 +82,7 @@
 //     if (isWrapped) {
 //       const transferMsg: FunctionCallOptions = {
 //         contractId: tokenBridge,
-//         methodName: 'send_transfer_wormhole_token',
+//         methodName: 'send_transfer_deltaswap_token',
 //         args: {
 //           token: tokenAddress,
 //           amount,

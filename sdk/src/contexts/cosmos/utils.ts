@@ -3,8 +3,8 @@ import {
   CHAIN_ID_EVMOS,
   CHAIN_ID_KUJIRA,
   CHAIN_ID_OSMOSIS,
-  CHAIN_ID_WORMCHAIN,
-} from '@certusone/wormhole-sdk';
+  CHAIN_ID_DELTACHAIN,
+} from '@certusone/deltaswap-sdk';
 import { logs as cosmosLogs } from '@cosmjs/stargate';
 import { ChainId } from '../../types';
 
@@ -42,7 +42,7 @@ const GATEWAY_CHAINS: ChainId[] = [
   CHAIN_ID_COSMOSHUB,
   CHAIN_ID_EVMOS,
   CHAIN_ID_OSMOSIS,
-  CHAIN_ID_WORMCHAIN,
+  CHAIN_ID_DELTACHAIN,
   CHAIN_ID_KUJIRA,
 ];
 

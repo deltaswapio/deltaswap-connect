@@ -1,4 +1,4 @@
-import { Theme } from "@wormhole-foundation/wormhole-connect";
+import { Theme } from "@deltaswapio/deltaswap-connect";
 import { grey, green, orange, red, cyan, purple } from "@mui/material/colors";
 
 export const OPACITY = {

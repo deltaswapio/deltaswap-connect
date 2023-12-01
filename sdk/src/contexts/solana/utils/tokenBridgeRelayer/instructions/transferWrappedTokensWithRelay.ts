@@ -24,7 +24,7 @@ export async function createTransferWrappedTokensWithRelayInstruction(
   programId: PublicKeyInitData,
   payer: PublicKeyInitData,
   tokenBridgeProgramId: PublicKeyInitData,
-  wormholeProgramId: PublicKeyInitData,
+  deltaswapProgramId: PublicKeyInitData,
   mint: PublicKeyInitData,
   amount: bigint,
   toNativeTokenAmount: bigint,
@@ -62,7 +62,7 @@ export async function createTransferWrappedTokensWithRelayInstruction(
   const tokenBridgeAccounts = getTransferWrappedWithPayloadCpiAccounts(
     programId,
     tokenBridgeProgramId,
-    wormholeProgramId,
+    deltaswapProgramId,
     payer,
     message,
     fromTokenAccount,

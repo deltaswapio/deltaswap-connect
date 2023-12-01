@@ -51,13 +51,13 @@ export declare namespace CircleRelayerStructs {
 
 export declare namespace ICircleIntegration {
   export type RedeemParametersStruct = {
-    encodedWormholeMessage: PromiseOrValue<BytesLike>;
+    encodedDeltaswapMessage: PromiseOrValue<BytesLike>;
     circleBridgeMessage: PromiseOrValue<BytesLike>;
     circleAttestation: PromiseOrValue<BytesLike>;
   };
 
   export type RedeemParametersStructOutput = [string, string, string] & {
-    encodedWormholeMessage: string;
+    encodedDeltaswapMessage: string;
     circleBridgeMessage: string;
     circleAttestation: string;
   };
@@ -97,7 +97,7 @@ export interface CircleRelayerInterface extends utils.Interface {
     'updateNativeSwapRatePrecision(uint16,uint256)': FunctionFragment;
     'updateOwnerAssistant(uint16,address)': FunctionFragment;
     'updateRelayerFee(uint16,address,uint256)': FunctionFragment;
-    'wormhole()': FunctionFragment;
+    'deltaswap()': FunctionFragment;
   };
 
   getFunction(
@@ -134,7 +134,7 @@ export interface CircleRelayerInterface extends utils.Interface {
       | 'updateNativeSwapRatePrecision'
       | 'updateOwnerAssistant'
       | 'updateRelayerFee'
-      | 'wormhole',
+      | 'deltaswap',
   ): FunctionFragment;
 
   encodeFunctionData(functionFragment: 'VERSION', values?: undefined): string;
@@ -271,7 +271,7 @@ export interface CircleRelayerInterface extends utils.Interface {
       PromiseOrValue<BigNumberish>,
     ],
   ): string;
-  encodeFunctionData(functionFragment: 'wormhole', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'deltaswap', values?: undefined): string;
 
   decodeFunctionResult(functionFragment: 'VERSION', data: BytesLike): Result;
   decodeFunctionResult(
@@ -386,7 +386,7 @@ export interface CircleRelayerInterface extends utils.Interface {
     functionFragment: 'updateRelayerFee',
     data: BytesLike,
   ): Result;
-  decodeFunctionResult(functionFragment: 'wormhole', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'deltaswap', data: BytesLike): Result;
 
   events: {
     'AdminChanged(address,address)': EventFragment;
@@ -664,7 +664,7 @@ export interface CircleRelayer extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<ContractTransaction>;
 
-    wormhole(overrides?: CallOverrides): Promise<[string]>;
+    deltaswap(overrides?: CallOverrides): Promise<[string]>;
   };
 
   VERSION(overrides?: CallOverrides): Promise<string>;
@@ -814,7 +814,7 @@ export interface CircleRelayer extends BaseContract {
     overrides?: Overrides & { from?: PromiseOrValue<string> },
   ): Promise<ContractTransaction>;
 
-  wormhole(overrides?: CallOverrides): Promise<string>;
+  deltaswap(overrides?: CallOverrides): Promise<string>;
 
   callStatic: {
     VERSION(overrides?: CallOverrides): Promise<string>;
@@ -962,7 +962,7 @@ export interface CircleRelayer extends BaseContract {
       overrides?: CallOverrides,
     ): Promise<void>;
 
-    wormhole(overrides?: CallOverrides): Promise<string>;
+    deltaswap(overrides?: CallOverrides): Promise<string>;
   };
 
   filters: {
@@ -1180,7 +1180,7 @@ export interface CircleRelayer extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<BigNumber>;
 
-    wormhole(overrides?: CallOverrides): Promise<BigNumber>;
+    deltaswap(overrides?: CallOverrides): Promise<BigNumber>;
   };
 
   populateTransaction: {
@@ -1335,6 +1335,6 @@ export interface CircleRelayer extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<PopulatedTransaction>;
 
-    wormhole(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    deltaswap(overrides?: CallOverrides): Promise<PopulatedTransaction>;
   };
 }

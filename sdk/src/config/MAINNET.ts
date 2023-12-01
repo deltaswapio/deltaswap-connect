@@ -1,5 +1,5 @@
-import { Network as Environment, CONTRACTS } from '@certusone/wormhole-sdk';
-import { WormholeConfig, Context, ChainConfig, Contracts } from '../types';
+import { Network as Environment, CONTRACTS } from '@certusone/deltaswap-sdk';
+import { DeltaswapConfig, Context, ChainConfig, Contracts } from '../types';
 
 /**
  * Mainnet chain name to chain id mapping
@@ -19,7 +19,7 @@ export const MAINNET_CHAINS = {
   optimism: 24,
   base: 30,
   sei: 32,
-  wormchain: 3104,
+  deltachain: 3104,
   osmosis: 20,
   cosmoshub: 4000,
   evmos: 4001,
@@ -53,8 +53,8 @@ const MAINNET: { [chain in MainnetChainName]: ChainConfig } = {
       cctpContracts: {
         cctpTokenMessenger: '0xbd3fa81b58ba92a82136038b25adec7066af3155',
         cctpMessageTransmitter: '0x0a992d191deec32afe36203ad87d7d289a738f81',
-        wormholeCircleRelayer: '0x4cb69FaE7e7Af841e44E1A1c30Af640739378bb2',
-        wormholeCCTP: '0xAaDA05BD399372f0b0463744C09113c137636f6a',
+        deltaswapCircleRelayer: '0x4cb69FaE7e7Af841e44E1A1c30Af640739378bb2',
+        deltaswapCCTP: '0xAaDA05BD399372f0b0463744C09113c137636f6a',
       },
     },
     finalityThreshold: 64,
@@ -106,8 +106,8 @@ const MAINNET: { [chain in MainnetChainName]: ChainConfig } = {
       cctpContracts: {
         cctpTokenMessenger: '0x6b25532e1060ce10cc3b0a99e5683b91bfde6982',
         cctpMessageTransmitter: '0x8186359af5f57fbb40c6b14a588d2a59c0c29880',
-        wormholeCircleRelayer: '0x4cb69FaE7e7Af841e44E1A1c30Af640739378bb2',
-        wormholeCCTP: '0x09Fb06A271faFf70A651047395AaEb6265265F13',
+        deltaswapCircleRelayer: '0x4cb69FaE7e7Af841e44E1A1c30Af640739378bb2',
+        deltaswapCCTP: '0x09Fb06A271faFf70A651047395AaEb6265265F13',
       },
     },
     finalityThreshold: 1,
@@ -180,8 +180,8 @@ const MAINNET: { [chain in MainnetChainName]: ChainConfig } = {
       cctpContracts: {
         cctpTokenMessenger: '0x19330d10D9Cc8751218eaf51E8885D058642E08A',
         cctpMessageTransmitter: '0xC30362313FBBA5cf9163F0bb16a0e01f01A896ca',
-        wormholeCircleRelayer: '0x4cb69FaE7e7Af841e44E1A1c30Af640739378bb2',
-        wormholeCCTP: '0x2703483b1a5a7c577e8680de9df8be03c6f30e3c',
+        deltaswapCircleRelayer: '0x4cb69FaE7e7Af841e44E1A1c30Af640739378bb2',
+        deltaswapCCTP: '0x2703483b1a5a7c577e8680de9df8be03c6f30e3c',
       },
       tbtcGateway: '0x1293a54e160D1cd7075487898d65266081A15458',
     },
@@ -198,8 +198,8 @@ const MAINNET: { [chain in MainnetChainName]: ChainConfig } = {
       cctpContracts: {
         cctpTokenMessenger: '0x2B4069517957735bE00ceE0fadAE88a26365528f',
         cctpMessageTransmitter: '0x4d41f22c5a0e5c74090899e5a8fb597a8842b3e8',
-        wormholeCircleRelayer: '0x4cb69FaE7e7Af841e44E1A1c30Af640739378bb2',
-        wormholeCCTP: '0x2703483b1a5a7c577e8680de9df8be03c6f30e3c',
+        deltaswapCircleRelayer: '0x4cb69FaE7e7Af841e44E1A1c30Af640739378bb2',
+        deltaswapCCTP: '0x2703483b1a5a7c577e8680de9df8be03c6f30e3c',
       },
       tbtcGateway: '0x1293a54e160D1cd7075487898d65266081A15458',
     },
@@ -217,8 +217,8 @@ const MAINNET: { [chain in MainnetChainName]: ChainConfig } = {
       cctpContracts: {
         cctpTokenMessenger: '0x1682Ae6375C4E4A97e4B583BC394c861A46D8962',
         cctpMessageTransmitter: '0xAD09780d193884d503182aD4588450C416D6F9D4',
-        wormholeCircleRelayer: '0x4cb69fae7e7af841e44e1a1c30af640739378bb2',
-        wormholeCCTP: '0x03faBB06Fa052557143dC28eFCFc63FC12843f1D',
+        deltaswapCircleRelayer: '0x4cb69fae7e7af841e44e1a1c30af640739378bb2',
+        deltaswapCCTP: '0x03faBB06Fa052557143dC28eFCFc63FC12843f1D',
       },
       tbtcGateway: '0x09959798B95d00a3183d20FaC298E4594E599eab',
     },
@@ -237,16 +237,16 @@ const MAINNET: { [chain in MainnetChainName]: ChainConfig } = {
     finalityThreshold: 0,
     nativeTokenDecimals: 6,
   },
-  wormchain: {
+  deltachain: {
     context: Context.COSMOS,
-    key: 'wormchain',
+    key: 'deltachain',
     id: 3104,
     contracts: {
-      core: 'wormhole1ufs3tlq4umljk0qfe8k5ya0x6hpavn897u2cnf9k0en9jr7qarqqaqfk2j',
+      core: 'deltaswap1ufs3tlq4umljk0qfe8k5ya0x6hpavn897u2cnf9k0en9jr7qarqqaqfk2j',
       token_bridge:
-        'wormhole1466nf3zuxpya8q9emxukd7vftaf6h4psr0a07srl5zw74zh84yjq4lyjmh',
+        'deltaswap1466nf3zuxpya8q9emxukd7vftaf6h4psr0a07srl5zw74zh84yjq4lyjmh',
       ibcShimContract:
-        'wormhole14ejqjyq8um4p3xfqj74yld5waqljf88fz25yxnma0cngspxe3les00fpjx',
+        'deltaswap14ejqjyq8um4p3xfqj74yld5waqljf88fz25yxnma0cngspxe3les00fpjx',
     },
     finalityThreshold: 0,
     nativeTokenDecimals: 6,
@@ -289,7 +289,7 @@ const env: Environment = 'MAINNET';
 /**
  * default mainnet chain config
  */
-const MAINNET_CONFIG: WormholeConfig = {
+const MAINNET_CONFIG: DeltaswapConfig = {
   env,
   rpcs: {
     ethereum: 'https://rpc.ankr.com/eth',
@@ -306,7 +306,7 @@ const MAINNET_CONFIG: WormholeConfig = {
     optimism: 'https://rpc.ankr.com/optimism',
     base: 'https://base.publicnode.com',
     sei: '', // TODO: fill in
-    wormchain: '',
+    deltachain: '',
     osmosis: 'https://osmosis-rpc.polkachu.com',
     cosmoshub: 'https://cosmos-rpc.polkachu.com',
     evmos: 'https://evmos-rpc.polkachu.com',
@@ -320,11 +320,11 @@ const MAINNET_CONFIG: WormholeConfig = {
     aptos: 'https://indexer.mainnet.aptoslabs.com/v1/graphql',
   },
   chains: MAINNET,
-  wormholeHosts: [
-    'https://wormhole-v2-mainnet-api.certus.one',
-    'https://wormhole-v2-mainnet-api.mcf.rocks',
-    'https://wormhole-v2-mainnet-api.chainlayer.network',
-    'https://wormhole-v2-mainnet-api.staking.fund',
+  deltaswapHosts: [
+    'https://deltaswap-v2-mainnet-api.certus.one',
+    'https://deltaswap-v2-mainnet-api.mcf.rocks',
+    'https://deltaswap-v2-mainnet-api.chainlayer.network',
+    'https://deltaswap-v2-mainnet-api.staking.fund',
   ],
 };
 

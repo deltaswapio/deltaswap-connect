@@ -13,11 +13,11 @@ export function createInitializeInstruction(
   connection: Connection,
   nftBridgeProgramId: PublicKeyInitData,
   payer: PublicKeyInitData,
-  wormholeProgramId: PublicKeyInitData,
+  deltaswapProgramId: PublicKeyInitData,
 ): TransactionInstruction {
   const methods = createReadOnlyNftBridgeProgramInterface(
     nftBridgeProgramId,
-  ).methods.initialize(wormholeProgramId as any);
+  ).methods.initialize(deltaswapProgramId as any);
 
   // @ts-ignore
   return methods._ixFn(...methods._args, {

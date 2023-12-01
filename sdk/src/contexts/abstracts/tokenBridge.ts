@@ -1,6 +1,6 @@
 import { BigNumber } from 'ethers';
 import { AnyContracts, TokenId, ChainName, ChainId, NATIVE } from '../../types';
-import { WormholeContext } from 'wormhole';
+import { DeltaswapContext } from 'deltaswap';
 
 /**
  * @abstract
@@ -8,20 +8,20 @@ import { WormholeContext } from 'wormhole';
  * A standard set of methods for interacting with the Token Bridge contracts across any of the supported chains
  *
  * @example
- * const context = Wormhole.getContext(chain); // get the chain Context
+ * const context = Deltaswap.getContext(chain); // get the chain Context
  * context.send(...); // call any of the supported methods in a standardized uniform fashion
  */
 export abstract class TokenBridgeAbstract<TransactionResult> {
   /**
-   * A standard set of methods for accessing interfaces for Wormhole contracts on a given chain
+   * A standard set of methods for accessing interfaces for Deltaswap contracts on a given chain
    */
   protected abstract contracts: AnyContracts;
-  protected abstract context: WormholeContext;
+  protected abstract context: DeltaswapContext;
 
   /**
    * Send a Token Bridge transfer
    *
-   * @dev This _must_ be claimed on the destination chain, see {@link WormholeContext#redeem | redeem}
+   * @dev This _must_ be claimed on the destination chain, see {@link DeltaswapContext#redeem | redeem}
    *
    * @param token The Token Identifier (chain/address) or `'native'` if sending the native token
    * @param amount The token amount to be sent, as a string
@@ -45,7 +45,7 @@ export abstract class TokenBridgeAbstract<TransactionResult> {
   /**
    * Send a Token Bridge transfer with a payload.  The payload is used to convey extra information about a transfer to be utilized in an application
    *
-   * @dev This _must_ be claimed on the destination chain, see {@link WormholeContext#redeem | redeem}
+   * @dev This _must_ be claimed on the destination chain, see {@link DeltaswapContext#redeem | redeem}
    *
    * @param token The Token Identifier (chain/address) or `'native'` if sending the native token
    * @param amount The token amount to be sent, as a string
@@ -80,56 +80,56 @@ export abstract class TokenBridgeAbstract<TransactionResult> {
   ): Promise<BigNumber>;
 
   /**
-   * Format an address to a 32-byte universal address, which can be utilized by the Wormhole contracts
+   * Format an address to a 32-byte universal address, which can be utilized by the Deltaswap contracts
    *
    * @param address The address as a string
-   * @returns The address as a 32-byte Wormhole address
+   * @returns The address as a 32-byte Deltaswap address
    */
   protected abstract formatAddress(address: string): any;
   /**
    * Parse an address from a 32-byte universal address to a cannonical address
    *
-   * @param address The 32-byte wormhole address
+   * @param address The 32-byte deltaswap address
    * @returns The address in the blockchain specific format
    */
   protected abstract parseAddress(address: any): string;
 
   /**
-   * Format a token address to 32-bytes universal address, which can be utilized by the Wormhole contracts
+   * Format a token address to 32-bytes universal address, which can be utilized by the Deltaswap contracts
    *
-   * How is this different from {@link WormholeContext#formatAddress | formatAddress}? Converting some assets to a universal representation might require querying a registry first
+   * How is this different from {@link DeltaswapContext#formatAddress | formatAddress}? Converting some assets to a universal representation might require querying a registry first
    *
    * @param address The token address as a string
-   * @returns The token address as a 32-byte Wormhole address
+   * @returns The token address as a 32-byte Deltaswap address
    */
   protected abstract formatAssetAddress(address: string): Promise<any>;
   /**
    * Parse a token address from a 32-byte universal address to a cannonical token address
    *
-   * How is this different from {@link WormholeContext#parseAddress | parseAddress}? Converting some assets from a universal to cannonical representation might require querying a registry first
+   * How is this different from {@link DeltaswapContext#parseAddress | parseAddress}? Converting some assets from a universal to cannonical representation might require querying a registry first
    *
-   * @param address The 32-byte wormhole address
+   * @param address The 32-byte deltaswap address
    * @returns The token address in the blockchain specific format
    */
   protected abstract parseAssetAddress(address: any): Promise<string>;
 
   /**
-   * Fetches the address for a token representation on any chain (These are the Wormhole token addresses, not necessarily the cannonical version of that token)
+   * Fetches the address for a token representation on any chain (These are the Deltaswap token addresses, not necessarily the cannonical version of that token)
    *
    * @param tokenId The Token ID (chain/address)
    * @param chain The chain name or id
-   * @returns The Wormhole address on the given chain, null if it does not exist
+   * @returns The Deltaswap address on the given chain, null if it does not exist
    */
   protected abstract getForeignAsset(
     tokenId: TokenId,
     chain: ChainName | ChainId,
   ): Promise<string | null>;
   /**
-   * Fetches the address for a token representation on any chain (These are the Wormhole token addresses, not necessarily the cannonical version of that token)
+   * Fetches the address for a token representation on any chain (These are the Deltaswap token addresses, not necessarily the cannonical version of that token)
    *
    * @param tokenId The Token ID (chain/address)
    * @param chain The chain name or id
-   * @returns The Wormhole address on the given chain
+   * @returns The Deltaswap address on the given chain
    * @throws Throws if the token does not exist
    */
   protected abstract mustGetForeignAsset(
@@ -155,7 +155,7 @@ export abstract class TokenBridgeAbstract<TransactionResult> {
    * @param walletAddress The wallet address
    * @param tokenId The token ID (its home chain and address on the home chain)
    * @param chain The chain name or id
-   * @returns The token balance of the wormhole asset as a BigNumber
+   * @returns The token balance of the deltaswap asset as a BigNumber
    */
   protected abstract getTokenBalance(
     walletAddress: string,
@@ -169,7 +169,7 @@ export abstract class TokenBridgeAbstract<TransactionResult> {
    * @param walletAddress The wallet address
    * @param tokenIds The token IDs (their home chain and address on the home chain)
    * @param chain The chain name or id
-   * @returns The token balance of the wormhole asset as a BigNumber
+   * @returns The token balance of the deltaswap asset as a BigNumber
    */
   protected abstract getTokenBalances(
     walletAddress: string,

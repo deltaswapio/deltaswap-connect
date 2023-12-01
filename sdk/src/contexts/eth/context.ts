@@ -1,8 +1,8 @@
 import {
   Implementation__factory,
   TokenImplementation__factory,
-} from '@certusone/wormhole-sdk/lib/esm/ethers-contracts';
-import { createNonce, keccak256 } from '@certusone/wormhole-sdk';
+} from '@certusone/deltaswap-sdk/lib/esm/ethers-contracts';
+import { createNonce, keccak256 } from '@certusone/deltaswap-sdk';
 import {
   BigNumber,
   BigNumberish,
@@ -25,7 +25,7 @@ import {
   Context,
   ParsedRelayerPayload,
 } from '../../types';
-import { WormholeContext } from '../../wormhole';
+import { DeltaswapContext } from '../../deltaswap';
 import { EthContracts } from './contracts';
 import { parseVaa } from '../../vaa';
 import { RelayerAbstract } from '../abstracts/relayer';
@@ -36,7 +36,7 @@ export const NO_VAA_FOUND = 'No message publish found in logs';
 export const INSUFFICIENT_ALLOWANCE = 'Insufficient token allowance';
 
 export class EthContext<
-  T extends WormholeContext,
+  T extends DeltaswapContext,
 > extends RelayerAbstract<ethers.ContractReceipt> {
   readonly type = Context.ETH;
   readonly contracts: EthContracts<T>;

@@ -1,4 +1,4 @@
-// import { WormholeContext } from '../wormhole';
+// import { DeltaswapContext } from '../deltaswap';
 // import { BridgeAbstract } from './abstracts';
 // import { TokenId, ChainName, ChainId, NATIVE } from '../types';
 // import { MsgExecuteContract as MsgExecuteContractInjective } from '@injectivelabs/sdk-ts';
@@ -7,9 +7,9 @@
 // import {
 //   hexToUint8Array,
 //   isNativeDenomInjective,
-// } from '@certusone/wormhole-sdk';
+// } from '@certusone/deltaswap-sdk';
 
-// export class InjectiveContext<T extends WormholeContext> extends BridgeAbstract {
+// export class InjectiveContext<T extends DeltaswapContext> extends BridgeAbstract {
 //   readonly context: T;
 
 //   constructor(context: T) {

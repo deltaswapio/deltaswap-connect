@@ -115,7 +115,7 @@ const _abi = [
         type: 'uint8',
       },
     ],
-    name: 'WormholeFinalityUpdated',
+    name: 'DeltaswapFinalityUpdated',
     type: 'event',
   },
   {
@@ -507,7 +507,7 @@ const _abi = [
         components: [
           {
             internalType: 'bytes',
-            name: 'encodedWormholeMessage',
+            name: 'encodedDeltaswapMessage',
             type: 'bytes',
           },
           {
@@ -651,7 +651,7 @@ const _abi = [
         type: 'bytes',
       },
     ],
-    name: 'updateWormholeFinality',
+    name: 'updateDeltaswapFinality',
     outputs: [],
     stateMutability: 'nonpayable',
     type: 'function',
@@ -700,10 +700,10 @@ const _abi = [
   },
   {
     inputs: [],
-    name: 'wormhole',
+    name: 'deltaswap',
     outputs: [
       {
-        internalType: 'contract IWormhole',
+        internalType: 'contract IDeltaswap',
         name: '',
         type: 'address',
       },
@@ -713,7 +713,7 @@ const _abi = [
   },
   {
     inputs: [],
-    name: 'wormholeFinality',
+    name: 'deltaswapFinality',
     outputs: [
       {
         internalType: 'uint8',

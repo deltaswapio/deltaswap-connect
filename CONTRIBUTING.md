@@ -2,7 +2,7 @@
 
 ### Fill out token config
 
-1. Create an entry for the token in `wormhole-connect/config/<mainnet/testnet>.ts`.
+1. Create an entry for the token in `deltaswap-connect/config/<mainnet/testnet>.ts`.
 2. Ensure the `key` value is equal to the object key for easy lookup.
 3. Add decimal values for default, Ethereum, Solana and Sui if applicable (i.e. if they vary from the default value)
 4. If it's a native gas token, ensure that the wrapped version is also present and linked under `wrappedAsset`
@@ -37,7 +37,7 @@ New addresses found, please update `SANCTIONED_WALLETS` in `src/consts/wallet.ts
 This means that the list of sanctioned wallets has changed. To update the list, run the following command, which grabs the updated list of addresses:
 
 ```sh
-$ ts-node wormhole-connect/scripts/ofac/getSdnList.ts
+$ ts-node deltaswap-connect/scripts/ofac/getSdnList.ts
 ```
 
 Copy the outputted list and paste it into `src/consts/wallet.ts` as the value of `SANCTIONED_WALLETS`.

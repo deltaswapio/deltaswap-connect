@@ -8,7 +8,7 @@ import {
   TransactionInstruction,
 } from '@solana/web3.js';
 import { createReadOnlyNftBridgeProgramInterface } from '../program';
-import { deriveClaimKey, derivePostedVaaKey } from '../../wormhole';
+import { deriveClaimKey, derivePostedVaaKey } from '../../deltaswap';
 import {
   deriveEndpointKey,
   deriveNftBridgeConfigKey,
@@ -27,7 +27,7 @@ import { BpfLoaderUpgradeable, deriveUpgradeableProgramKey } from '../../utils';
 export function createRegisterChainInstruction(
   connection: Connection,
   nftBridgeProgramId: PublicKeyInitData,
-  wormholeProgramId: PublicKeyInitData,
+  deltaswapProgramId: PublicKeyInitData,
   payer: PublicKeyInitData,
   vaa: SignedVaa | ParsedNftBridgeRegisterChainVaa,
 ): TransactionInstruction {
@@ -40,7 +40,7 @@ export function createRegisterChainInstruction(
   return methods._ixFn(...methods._args, {
     accounts: getRegisterChainAccounts(
       nftBridgeProgramId,
-      wormholeProgramId,
+      deltaswapProgramId,
       payer,
       vaa,
     ) as any,
@@ -59,12 +59,12 @@ export interface RegisterChainAccounts {
   claim: PublicKey;
   rent: PublicKey;
   systemProgram: PublicKey;
-  wormholeProgram: PublicKey;
+  deltaswapProgram: PublicKey;
 }
 
 export function getRegisterChainAccounts(
   nftBridgeProgramId: PublicKeyInitData,
-  wormholeProgramId: PublicKeyInitData,
+  deltaswapProgramId: PublicKeyInitData,
   payer: PublicKeyInitData,
   vaa: SignedVaa | ParsedNftBridgeRegisterChainVaa,
 ): RegisterChainAccounts {
@@ -77,7 +77,7 @@ export function getRegisterChainAccounts(
       parsed.foreignChain,
       parsed.foreignAddress,
     ),
-    vaa: derivePostedVaaKey(wormholeProgramId, parsed.hash),
+    vaa: derivePostedVaaKey(deltaswapProgramId, parsed.hash),
     claim: deriveClaimKey(
       nftBridgeProgramId,
       parsed.emitterAddress,
@@ -86,14 +86,14 @@ export function getRegisterChainAccounts(
     ),
     rent: SYSVAR_RENT_PUBKEY,
     systemProgram: SystemProgram.programId,
-    wormholeProgram: new PublicKey(wormholeProgramId),
+    deltaswapProgram: new PublicKey(deltaswapProgramId),
   };
 }
 
 export function createUpgradeContractInstruction(
   connection: Connection,
   nftBridgeProgramId: PublicKeyInitData,
-  wormholeProgramId: PublicKeyInitData,
+  deltaswapProgramId: PublicKeyInitData,
   payer: PublicKeyInitData,
   vaa: SignedVaa | ParsedNftBridgeUpgradeContractVaa,
   spill?: PublicKeyInitData,
@@ -107,7 +107,7 @@ export function createUpgradeContractInstruction(
   return methods._ixFn(...methods._args, {
     accounts: getUpgradeContractAccounts(
       nftBridgeProgramId,
-      wormholeProgramId,
+      deltaswapProgramId,
       payer,
       vaa,
       spill,
@@ -136,7 +136,7 @@ export interface UpgradeContractAccounts {
 
 export function getUpgradeContractAccounts(
   nftBridgeProgramId: PublicKeyInitData,
-  wormholeProgramId: PublicKeyInitData,
+  deltaswapProgramId: PublicKeyInitData,
   payer: PublicKeyInitData,
   vaa: SignedVaa | ParsedNftBridgeUpgradeContractVaa,
   spill?: PublicKeyInitData,
@@ -144,7 +144,7 @@ export function getUpgradeContractAccounts(
   const parsed = isBytes(vaa) ? parseNftBridgeUpgradeContractVaa(vaa) : vaa;
   return {
     payer: new PublicKey(payer),
-    vaa: derivePostedVaaKey(wormholeProgramId, parsed.hash),
+    vaa: derivePostedVaaKey(deltaswapProgramId, parsed.hash),
     claim: deriveClaimKey(
       nftBridgeProgramId,
       parsed.emitterAddress,

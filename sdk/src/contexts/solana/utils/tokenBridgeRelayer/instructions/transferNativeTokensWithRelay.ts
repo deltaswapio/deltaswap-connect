@@ -23,7 +23,7 @@ export async function createTransferNativeTokensWithRelayInstruction(
   programId: PublicKeyInitData,
   payer: PublicKeyInitData,
   tokenBridgeProgramId: PublicKeyInitData,
-  wormholeProgramId: PublicKeyInitData,
+  deltaswapProgramId: PublicKeyInitData,
   mint: PublicKeyInitData,
   amount: bigint,
   toNativeTokenAmount: bigint,
@@ -56,7 +56,7 @@ export async function createTransferNativeTokensWithRelayInstruction(
   const tokenBridgeAccounts = getTransferNativeWithPayloadCpiAccounts(
     programId,
     tokenBridgeProgramId,
-    wormholeProgramId,
+    deltaswapProgramId,
     payer,
     message,
     fromTokenAccount,

@@ -1,13 +1,13 @@
-Wormhole Connect SDK
+Deltaswap Connect SDK
 --------------------
 
 
-An SDK that wraps the core Wormhole SDK and provides a convenient API to interact with the Wormhole Token Bridge protocol.
+An SDK that wraps the core Deltaswap SDK and provides a convenient API to interact with the Deltaswap Token Bridge protocol.
 
 
 Here is an example showing how to send a token across chains using this SDK: 
 ```ts
- const context = new WormholeContext('MAINNET');
+ const context = new DeltaswapContext('MAINNET');
  
  // interact easily with any chain!
  // supports EVM, Solana, Terra, etc

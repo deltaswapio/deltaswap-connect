@@ -1,15 +1,15 @@
 import { Connection, clusterApiUrl } from '@solana/web3.js';
 import { Program } from '@project-serum/anchor';
-import { TokenBridge } from '@certusone/wormhole-sdk/lib/esm/solana/types/tokenBridge';
-import { NftBridge } from '@certusone/wormhole-sdk/lib/esm/solana/types/nftBridge';
-import { Wormhole } from '@certusone/wormhole-sdk/lib/esm/solana/types/wormhole';
+import { TokenBridge } from '@certusone/deltaswap-sdk/lib/esm/solana/types/tokenBridge';
+import { NftBridge } from '@certusone/deltaswap-sdk/lib/esm/solana/types/nftBridge';
+import { Deltaswap } from '@certusone/deltaswap-sdk/lib/esm/solana/types/deltaswap';
 
 import { ChainName, ChainId, Contracts, Context } from '../../types';
 import { ContractsAbstract } from '../abstracts/contracts';
-import { WormholeContext } from '../../wormhole';
+import { DeltaswapContext } from '../../deltaswap';
 import { filterByContext } from '../../utils';
 import { SolanaContext } from './context';
-import { createReadOnlyWormholeProgramInterface } from './utils/wormhole';
+import { createReadOnlyDeltaswapProgramInterface } from './utils/deltaswap';
 import { createReadOnlyTokenBridgeProgramInterface } from './utils/tokenBridge';
 import { createReadOnlyNftBridgeProgramInterface } from './utils/nftBridge';
 import { SolanaRelayer } from './relayer';
@@ -18,7 +18,7 @@ import { SolanaRelayer } from './relayer';
  * @category Solana
  */
 export class SolContracts<
-  T extends WormholeContext,
+  T extends DeltaswapContext,
 > extends ContractsAbstract<T> {
   connection: Connection | undefined;
   protected _contracts: Map<ChainName, any>;
@@ -49,46 +49,46 @@ export class SolContracts<
   }
 
   /**
-   * Returns core wormhole contract for the chain
+   * Returns core deltaswap contract for the chain
    *
    * @returns An interface for the core contract, undefined if not found
    */
-  getCore(chain?: ChainName | ChainId): Program<Wormhole> | undefined {
+  getCore(chain?: ChainName | ChainId): Program<Deltaswap> | undefined {
     const context = this.context.getContext(
       'solana',
-    ) as SolanaContext<WormholeContext>;
+    ) as SolanaContext<DeltaswapContext>;
     const connection = context.connection;
     if (!connection) throw new Error('no connection');
 
     const contracts = this.context.mustGetContracts('solana');
     if (!contracts.core) return;
 
-    return createReadOnlyWormholeProgramInterface(
+    return createReadOnlyDeltaswapProgramInterface(
       contracts.core,
       this.connection,
     );
   }
 
   /**
-   * Returns core wormhole contract for the chain
+   * Returns core deltaswap contract for the chain
    *
    * @returns An interface for the core contract, errors if not found
    */
-  mustGetCore(chain?: ChainName | ChainId): Program<Wormhole> {
+  mustGetCore(chain?: ChainName | ChainId): Program<Deltaswap> {
     const core = this.getCore(chain);
     if (!core) throw new Error(`Core contract for domain ${chain} not found`);
     return core;
   }
 
   /**
-   * Returns wormhole bridge contract for the chain
+   * Returns deltaswap bridge contract for the chain
    *
    * @returns An interface for the bridge contract, undefined if not found
    */
   getBridge(chain?: ChainName | ChainId): Program<TokenBridge> | undefined {
     const context = this.context.getContext(
       'solana',
-    ) as SolanaContext<WormholeContext>;
+    ) as SolanaContext<DeltaswapContext>;
     const connection = context.connection;
     if (!connection) throw new Error('no connection');
 
@@ -102,7 +102,7 @@ export class SolContracts<
   }
 
   /**
-   * Returns wormhole bridge contract for the chain
+   * Returns deltaswap bridge contract for the chain
    *
    * @returns An interface for the bridge contract, errors if not found
    */
@@ -114,14 +114,14 @@ export class SolContracts<
   }
 
   /**
-   * Returns wormhole NFT bridge contract for the chain
+   * Returns deltaswap NFT bridge contract for the chain
    *
    * @returns An interface for the NFT bridge contract, undefined if not found
    */
   getNftBridge(chain?: ChainName | ChainId): Program<NftBridge> | undefined {
     const context = this.context.getContext(
       'solana',
-    ) as SolanaContext<WormholeContext>;
+    ) as SolanaContext<DeltaswapContext>;
     const connection = context.connection;
     if (!connection) throw new Error('no connection');
 
@@ -135,7 +135,7 @@ export class SolContracts<
   }
 
   /**
-   * Returns wormhole NFT bridge contract for the chain
+   * Returns deltaswap NFT bridge contract for the chain
    *
    * @returns An interface for the NFT bridge contract, errors if not found
    */
@@ -147,7 +147,7 @@ export class SolContracts<
   }
 
   /**
-   * Returns wormhole Token Bridge Relayer contract for the chain
+   * Returns deltaswap Token Bridge Relayer contract for the chain
    *
    * @returns An interface for the Token Bridge Relayer contract, undefined if not found
    */
@@ -156,7 +156,7 @@ export class SolContracts<
   ): SolanaRelayer | undefined {
     const context = this.context.getContext(
       'solana',
-    ) as SolanaContext<WormholeContext>;
+    ) as SolanaContext<DeltaswapContext>;
     const connection = context.connection;
     if (!connection) throw new Error('no connection');
 
@@ -167,7 +167,7 @@ export class SolContracts<
   }
 
   /**
-   * Returns wormhole Token Bridge Relayer contract for the chain
+   * Returns deltaswap Token Bridge Relayer contract for the chain
    *
    * @returns An interface for the Token Bridge Relayer contract, errors if not found
    */
@@ -179,22 +179,22 @@ export class SolContracts<
   }
 
   /**
-   * Returns wormhole CCTP relayer contract for the chain
+   * Returns deltaswap CCTP relayer contract for the chain
    *
-   * @returns An interface for the Wormhole CCTP relayer contract, undefined if not found
+   * @returns An interface for the Deltaswap CCTP relayer contract, undefined if not found
    */
-  getWormholeCircleRelayer(chain: ChainName | ChainId): any {
+  getDeltaswapCircleRelayer(chain: ChainName | ChainId): any {
     return undefined;
   }
 
   /**
-   * Returns wormhole CCTP relayer contract for the chain
+   * Returns deltaswap CCTP relayer contract for the chain
    *
-   * @returns An interface for the Wormhole CCTP relayer contract, errors if not found
+   * @returns An interface for the Deltaswap CCTP relayer contract, errors if not found
    */
-  mustGetWormholeCircleRelayer(chain: ChainName | ChainId): any {
+  mustGetDeltaswapCircleRelayer(chain: ChainName | ChainId): any {
     throw new Error(
-      `Wormhole circle relayer contract for domain ${chain} not found`,
+      `Deltaswap circle relayer contract for domain ${chain} not found`,
     );
   }
 }

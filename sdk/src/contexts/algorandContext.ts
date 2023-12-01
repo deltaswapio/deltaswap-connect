@@ -1,4 +1,4 @@
-// import { WormholeContext } from '../wormhole';
+// import { DeltaswapContext } from '../deltaswap';
 // import { BridgeAbstract } from './abstracts';
 // import { TokenId, ChainName, ChainId, NATIVE } from '../types';
 // import {
@@ -6,14 +6,14 @@
 //   getMessageFee,
 //   optin,
 //   TransactionSignerPair,
-// } from '@certusone/wormhole-sdk/lib/cjs/algorand';
+// } from '@certusone/deltaswap-sdk/lib/cjs/algorand';
 // import {
 //   getEmitterAddressAlgorand,
 //   safeBigIntToNumber,
 //   textToUint8Array,
 //   hexToUint8Array,
 //   uint8ArrayToHex,
-// } from '@certusone/wormhole-sdk';
+// } from '@certusone/deltaswap-sdk';
 // import {
 //   Algodv2,
 //   bigIntToBytes,
@@ -28,7 +28,7 @@
 // } from 'algosdk';
 // import AlgodClient from 'algosdk/dist/types/client/v2/algod/algod';
 
-// export class AlgorandContext<T extends WormholeContext> extends BridgeAbstract {
+// export class AlgorandContext<T extends DeltaswapContext> extends BridgeAbstract {
 //   readonly context: T;
 
 //   constructor(context: T) {
@@ -86,7 +86,7 @@
 //     txs.push(...emitterOptInTxs);
 //     let creator;
 //     let creatorAcctInfo: any;
-//     let wormhole: boolean = false;
+//     let deltaswap: boolean = false;
 //     if (tokenAddress !== BigInt(0)) {
 //       const assetInfo: Record<string, any> = await client
 //         .getAssetByID(safeBigIntToNumber(tokenAddress))
@@ -95,7 +95,7 @@
 //       creatorAcctInfo = await client.accountInformation(creator).do();
 //       const authAddr: string = creatorAcctInfo['auth-addr'];
 //       if (authAddr === tokenAddr) {
-//         wormhole = true;
+//         deltaswap = true;
 //       }
 //     }
 
@@ -111,7 +111,7 @@
 //         });
 //       txs.push({ tx: payTxn, signer: null });
 //     }
-//     if (!wormhole) {
+//     if (!deltaswap) {
 //       const bNat = Buffer.from('native', 'binary').toString('hex');
 //       // "creator"
 //       const result = await optin(

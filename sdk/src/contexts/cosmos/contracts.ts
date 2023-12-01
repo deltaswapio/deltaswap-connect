@@ -1,6 +1,6 @@
 import { ChainId, ChainName, Context, Contracts } from '../../types';
 import { filterByContext } from '../../utils';
-import { WormholeContext } from '../../wormhole';
+import { DeltaswapContext } from '../../deltaswap';
 import { ContractsAbstract } from '../abstracts/contracts';
 
 /**
@@ -8,7 +8,7 @@ import { ContractsAbstract } from '../abstracts/contracts';
  * Cosmos Contracts class. Contains methods for accessing ts interfaces for all available contracts
  */
 export class CosmosContracts<
-  T extends WormholeContext,
+  T extends DeltaswapContext,
 > extends ContractsAbstract<T> {
   protected _contracts: Map<ChainName, any>;
   readonly context: T;
@@ -36,7 +36,7 @@ export class CosmosContracts<
   }
 
   /**
-   * Returns core wormhole address contract for the chain
+   * Returns core deltaswap address contract for the chain
    *
    * @returns The core contract address, undefined if not found
    */
@@ -45,7 +45,7 @@ export class CosmosContracts<
   }
 
   /**
-   * Returns core wormhole address contract for the chain
+   * Returns core deltaswap address contract for the chain
    *
    * @returns The core contract address, errors if not found
    */
@@ -56,7 +56,7 @@ export class CosmosContracts<
   }
 
   /**
-   * Returns wormhole bridge address contract for the chain
+   * Returns deltaswap bridge address contract for the chain
    *
    * @returns The bridge contract address, undefined if not found
    */
@@ -65,7 +65,7 @@ export class CosmosContracts<
   }
 
   /**
-   * Returns wormhole bridge address contract for the chain
+   * Returns deltaswap bridge address contract for the chain
    *
    * @returns The bridge contract address, errors if not found
    */
@@ -77,7 +77,7 @@ export class CosmosContracts<
   }
 
   /**
-   * Returns wormhole NFT bridge address contract for the chain
+   * Returns deltaswap NFT bridge address contract for the chain
    *
    * @returns The NFT bridge address, undefined if not found
    */
@@ -86,7 +86,7 @@ export class CosmosContracts<
   }
 
   /**
-   * Returns wormhole NFT bridge address contract for the chain
+   * Returns deltaswap NFT bridge address contract for the chain
    *
    * @returns The NFT bridge address, errors if not found
    */
@@ -98,7 +98,7 @@ export class CosmosContracts<
   }
 
   /**
-   * Returns wormhole Token Bridge Relayer address contract for the chain
+   * Returns deltaswap Token Bridge Relayer address contract for the chain
    *
    * @returns The Token Bridge Relayer address, undefined if not found
    */
@@ -107,7 +107,7 @@ export class CosmosContracts<
   }
 
   /**
-   * Returns wormhole Token Bridge Relayer address contract for the chain
+   * Returns deltaswap Token Bridge Relayer address contract for the chain
    *
    * @returns The Token Bridge Relayer address, errors if not found
    */
@@ -121,22 +121,22 @@ export class CosmosContracts<
   }
 
   /**
-   * Returns wormhole CCTP relayer contract for the chain
+   * Returns deltaswap CCTP relayer contract for the chain
    *
-   * @returns An interface for the Wormhole CCTP relayer contract, undefined if not found
+   * @returns An interface for the Deltaswap CCTP relayer contract, undefined if not found
    */
-  getWormholeCircleRelayer(chain: ChainName | ChainId) {
+  getDeltaswapCircleRelayer(chain: ChainName | ChainId) {
     return undefined;
   }
 
   /**
-   * Returns wormhole CCTP relayer contract for the chain
+   * Returns deltaswap CCTP relayer contract for the chain
    *
-   * @returns An interface for the Wormhole CCTP relayer contract, errors if not found
+   * @returns An interface for the Deltaswap CCTP relayer contract, errors if not found
    */
-  mustGetWormholeCircleRelayer(chain: ChainName | ChainId) {
+  mustGetDeltaswapCircleRelayer(chain: ChainName | ChainId) {
     throw new Error(
-      `Wormhole circle relayer contract for domain ${chain} not found`,
+      `Deltaswap circle relayer contract for domain ${chain} not found`,
     );
   }
 }

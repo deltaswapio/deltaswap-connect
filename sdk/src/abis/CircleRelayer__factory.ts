@@ -536,7 +536,7 @@ const _abi = [
         components: [
           {
             internalType: 'bytes',
-            name: 'encodedWormholeMessage',
+            name: 'encodedDeltaswapMessage',
             type: 'bytes',
           },
           {
@@ -802,10 +802,10 @@ const _abi = [
   },
   {
     inputs: [],
-    name: 'wormhole',
+    name: 'deltaswap',
     outputs: [
       {
-        internalType: 'contract IWormhole',
+        internalType: 'contract IDeltaswap',
         name: '',
         type: 'address',
       },

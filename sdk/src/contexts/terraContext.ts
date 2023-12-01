@@ -1,14 +1,14 @@
 // import { MsgExecuteContract } from '@terra-money/terra.js';
-// import { isNativeDenom } from '@certusone/wormhole-sdk/lib/cjs/terra';
-// import { hexToUint8Array } from '@certusone/wormhole-sdk';
+// import { isNativeDenom } from '@certusone/deltaswap-sdk/lib/cjs/terra';
+// import { hexToUint8Array } from '@certusone/deltaswap-sdk';
 // import { bech32 } from 'bech32';
 // import { zeroPad } from 'ethers/lib/utils';
 
-// import { WormholeContext } from '../wormhole';
+// import { DeltaswapContext } from '../deltaswap';
 // import { BridgeAbstract } from './abstracts';
 // import { TokenId, ChainName, ChainId, NATIVE } from '../types';
 
-// export class TerraContext<T extends WormholeContext> extends BridgeAbstract {
+// export class TerraContext<T extends DeltaswapContext> extends BridgeAbstract {
 //   readonly context: T;
 
 //   constructor(context: T) {

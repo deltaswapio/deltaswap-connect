@@ -88,7 +88,7 @@ export interface TokenBridgeRelayerInterface extends utils.Interface {
     'updateSwapRate(uint16,address,uint256)': FunctionFragment;
     'updateSwapRatePrecision(uint16,uint256)': FunctionFragment;
     'updateUnwrapWethFlag(uint16,bool)': FunctionFragment;
-    'wormhole()': FunctionFragment;
+    'deltaswap()': FunctionFragment;
     'wrapAndTransferEthWithRelay(uint256,uint16,bytes32,uint32)': FunctionFragment;
   };
 
@@ -131,7 +131,7 @@ export interface TokenBridgeRelayerInterface extends utils.Interface {
       | 'updateSwapRate'
       | 'updateSwapRatePrecision'
       | 'updateUnwrapWethFlag'
-      | 'wormhole'
+      | 'deltaswap'
       | 'wrapAndTransferEthWithRelay',
   ): FunctionFragment;
 
@@ -293,7 +293,7 @@ export interface TokenBridgeRelayerInterface extends utils.Interface {
     functionFragment: 'updateUnwrapWethFlag',
     values: [PromiseOrValue<BigNumberish>, PromiseOrValue<boolean>],
   ): string;
-  encodeFunctionData(functionFragment: 'wormhole', values?: undefined): string;
+  encodeFunctionData(functionFragment: 'deltaswap', values?: undefined): string;
   encodeFunctionData(
     functionFragment: 'wrapAndTransferEthWithRelay',
     values: [
@@ -434,7 +434,7 @@ export interface TokenBridgeRelayerInterface extends utils.Interface {
     functionFragment: 'updateUnwrapWethFlag',
     data: BytesLike,
   ): Result;
-  decodeFunctionResult(functionFragment: 'wormhole', data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: 'deltaswap', data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: 'wrapAndTransferEthWithRelay',
     data: BytesLike,
@@ -713,7 +713,7 @@ export interface TokenBridgeRelayer extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<ContractTransaction>;
 
-    wormhole(overrides?: CallOverrides): Promise<[string]>;
+    deltaswap(overrides?: CallOverrides): Promise<[string]>;
 
     wrapAndTransferEthWithRelay(
       toNativeTokenAmount: PromiseOrValue<BigNumberish>,
@@ -903,7 +903,7 @@ export interface TokenBridgeRelayer extends BaseContract {
     overrides?: Overrides & { from?: PromiseOrValue<string> },
   ): Promise<ContractTransaction>;
 
-  wormhole(overrides?: CallOverrides): Promise<string>;
+  deltaswap(overrides?: CallOverrides): Promise<string>;
 
   wrapAndTransferEthWithRelay(
     toNativeTokenAmount: PromiseOrValue<BigNumberish>,
@@ -1091,7 +1091,7 @@ export interface TokenBridgeRelayer extends BaseContract {
       overrides?: CallOverrides,
     ): Promise<void>;
 
-    wormhole(overrides?: CallOverrides): Promise<string>;
+    deltaswap(overrides?: CallOverrides): Promise<string>;
 
     wrapAndTransferEthWithRelay(
       toNativeTokenAmount: PromiseOrValue<BigNumberish>,
@@ -1328,7 +1328,7 @@ export interface TokenBridgeRelayer extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<BigNumber>;
 
-    wormhole(overrides?: CallOverrides): Promise<BigNumber>;
+    deltaswap(overrides?: CallOverrides): Promise<BigNumber>;
 
     wrapAndTransferEthWithRelay(
       toNativeTokenAmount: PromiseOrValue<BigNumberish>,
@@ -1523,7 +1523,7 @@ export interface TokenBridgeRelayer extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> },
     ): Promise<PopulatedTransaction>;
 
-    wormhole(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+    deltaswap(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     wrapAndTransferEthWithRelay(
       toNativeTokenAmount: PromiseOrValue<BigNumberish>,

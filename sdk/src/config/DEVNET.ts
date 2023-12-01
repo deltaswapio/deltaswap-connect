@@ -1,5 +1,5 @@
-import { CONTRACTS, Network as Environment } from '@certusone/wormhole-sdk';
-import { ChainConfig, Context, Contracts, WormholeConfig } from '../types';
+import { CONTRACTS, Network as Environment } from '@certusone/deltaswap-sdk';
+import { ChainConfig, Context, Contracts, DeltaswapConfig } from '../types';
 
 /**
  * devnet chain name to chain id mapping
@@ -8,7 +8,7 @@ export const DEVNET_CHAINS = {
   ethereum: 2,
   terra2: 18,
   osmosis: 20,
-  wormchain: 3104,
+  deltachain: 3104,
 } as const;
 
 /**
@@ -49,16 +49,16 @@ const DEVNET: { [chain in DevnetChainName]: ChainConfig } = {
     finalityThreshold: 0,
     nativeTokenDecimals: 6,
   },
-  wormchain: {
+  deltachain: {
     context: Context.COSMOS,
-    key: 'wormchain',
+    key: 'deltachain',
     id: 3104,
     contracts: {
-      core: 'wormhole17p9rzwnnfxcjp32un9ug7yhhzgtkhvl9jfksztgw5uh69wac2pgshdnj3k',
+      core: 'deltaswap17p9rzwnnfxcjp32un9ug7yhhzgtkhvl9jfksztgw5uh69wac2pgshdnj3k',
       token_bridge:
-        'wormhole1ghd753shjuwexxywmgs4xz7x2q732vcnkm6h2pyv9s6ah3hylvrqtm7t3h',
+        'deltaswap1ghd753shjuwexxywmgs4xz7x2q732vcnkm6h2pyv9s6ah3hylvrqtm7t3h',
       ibcShimContract:
-        'wormhole1mf6ptkssddfmxvhdx0ech0k03ktp6kf9yk59renau2gvht3nq2gq6n0sg2',
+        'deltaswap1mf6ptkssddfmxvhdx0ech0k03ktp6kf9yk59renau2gvht3nq2gq6n0sg2',
     },
     finalityThreshold: 0,
     nativeTokenDecimals: 6,
@@ -79,18 +79,18 @@ const env: Environment = 'DEVNET';
 /**
  * default devnet chain config
  */
-const DEVNET_CONFIG: WormholeConfig = {
+const DEVNET_CONFIG: DeltaswapConfig = {
   env,
   rpcs: {
     ethereum: 'http://localhost:8545',
-    wormchain: 'http://localhost:26659',
+    deltachain: 'http://localhost:26659',
     osmosis: 'http://localhost:33043',
     terra2: 'http://localhost:26658',
   },
   rest: {},
   graphql: {},
   chains: DEVNET,
-  wormholeHosts: ['http://localhost:7071'],
+  deltaswapHosts: ['http://localhost:7071'],
 };
 
 export default DEVNET_CONFIG;

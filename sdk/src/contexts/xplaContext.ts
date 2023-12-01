@@ -1,12 +1,12 @@
-// import { WormholeContext } from '../wormhole';
+// import { DeltaswapContext } from '../deltaswap';
 // import { BridgeAbstract } from './abstracts';
 // import { TokenId, ChainName, ChainId, NATIVE } from '../types';
 // import { MsgExecuteContract as XplaMsgExecuteContract } from '@xpla/xpla.js';
-// import { hexToUint8Array, isNativeDenomXpla } from '@certusone/wormhole-sdk';
+// import { hexToUint8Array, isNativeDenomXpla } from '@certusone/deltaswap-sdk';
 // import { bech32 } from 'bech32';
 // import { zeroPad } from 'ethers/lib/utils';
 
-// export class XplaContext<T extends WormholeContext> extends BridgeAbstract {
+// export class XplaContext<T extends DeltaswapContext> extends BridgeAbstract {
 //   readonly context: T;
 
 //   constructor(context: T) {
