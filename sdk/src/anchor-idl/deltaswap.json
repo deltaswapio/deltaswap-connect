@@ -54,7 +54,10 @@
           "name": "initialPhylaxs",
           "type": {
             "vec": {
-              "array": ["u8", 20]
+              "array": [
+                "u8",
+                20
+              ]
             }
           }
         }
@@ -192,7 +195,9 @@
         {
           "name": "emitterAddress",
           "type": {
-            "array": ["u8", 32]
+            "array": [
+              "u8", 32
+            ]
           }
         },
         {
@@ -330,7 +335,7 @@
           "isSigner": false
         },
         {
-          "name": "deltaswapProgram",
+          "name": "wormholeProgram",
           "isMut": true,
           "isSigner": false
         },
@@ -436,7 +441,9 @@
         {
           "name": "signatureStatus",
           "type": {
-            "array": ["i8", 19]
+            "array": [
+              "i8", 19
+            ]
           }
         }
       ]
@@ -547,7 +554,10 @@
           {
             "name": "emitterAddress",
             "type": {
-              "array": ["u8", 32]
+              "array": [
+                "u8",
+                32
+              ]
             }
           },
           {
@@ -597,7 +607,10 @@
           {
             "name": "emitterAddress",
             "type": {
-              "array": ["u8", 32]
+              "array": [
+                "u8",
+                32
+              ]
             }
           },
           {

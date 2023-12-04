@@ -5,10 +5,7 @@ import { ChainConfig, Context, Contracts, DeltaswapConfig } from '../types';
  * devnet chain name to chain id mapping
  */
 export const DEVNET_CHAINS = {
-  ethereum: 2,
-  terra2: 18,
-  osmosis: 20,
-  deltachain: 3104,
+
 } as const;
 
 /**

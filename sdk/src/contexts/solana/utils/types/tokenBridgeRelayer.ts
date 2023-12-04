@@ -955,7 +955,7 @@ export type TokenBridgeRelayer = {
           isSigner: false;
         },
         {
-          name: 'deltaswapProgram';
+          name: 'wormholeProgram';
           isMut: false;
           isSigner: false;
         },
@@ -1140,7 +1140,7 @@ export type TokenBridgeRelayer = {
           isSigner: false;
         },
         {
-          name: 'deltaswapProgram';
+          name: 'wormholeProgram';
           isMut: false;
           isSigner: false;
         },
@@ -1351,7 +1351,7 @@ export type TokenBridgeRelayer = {
           isSigner: false;
         },
         {
-          name: 'deltaswapProgram';
+          name: 'wormholeProgram';
           isMut: false;
           isSigner: false;
         },
@@ -1544,7 +1544,7 @@ export type TokenBridgeRelayer = {
           isSigner: false;
         },
         {
-          name: 'deltaswapProgram';
+          name: 'wormholeProgram';
           isMut: false;
           isSigner: false;
         },
@@ -2938,7 +2938,7 @@ export const IDL: TokenBridgeRelayer = {
           isSigner: false,
         },
         {
-          name: 'deltaswapProgram',
+          name: 'wormholeProgram',
           isMut: false,
           isSigner: false,
         },
@@ -3123,7 +3123,7 @@ export const IDL: TokenBridgeRelayer = {
           isSigner: false,
         },
         {
-          name: 'deltaswapProgram',
+          name: 'wormholeProgram',
           isMut: false,
           isSigner: false,
         },
@@ -3334,7 +3334,7 @@ export const IDL: TokenBridgeRelayer = {
           isSigner: false,
         },
         {
-          name: 'deltaswapProgram',
+          name: 'wormholeProgram',
           isMut: false,
           isSigner: false,
         },
@@ -3527,7 +3527,7 @@ export const IDL: TokenBridgeRelayer = {
           isSigner: false,
         },
         {
-          name: 'deltaswapProgram',
+          name: 'wormholeProgram',
           isMut: false,
           isSigner: false,
         },
