@@ -52,7 +52,7 @@ export const partnerLogo = config.partnerLogo;
 export const WORMSCAN = 'https://deltaswapscan.io/#/';
 export const DELTASWAP_API =
   ENV === 'MAINNET'
-    ? 'https://api.deltaswapscan.io/'
+    ? 'https://p-1.deltaswap.io/'
     : ENV === 'DEVNET'
     ? ''
     : 'https://api.testnet.deltaswapscan.io/';
