@@ -59,7 +59,7 @@ export const DELTASWAP_API =
 
 export const ATTEST_URL =
   ENV === 'MAINNET'
-    ? 'https://www.portalbridge.com/#/register'
+    ? 'https://deltaswap.io/#/register'
     : ENV === 'DEVNET'
     ? ''
     : 'https://deltaswapio.github.io/example-token-bridge-ui/#/register';
@@ -69,12 +69,9 @@ export const USDC_BRIDGE_URL = config.cctpWarning?.href || '';
 export const DELTASWAP_RPC_HOSTS =
   ENV === 'MAINNET'
     ? [
-        'https://deltaswap-v2-mainnet-api.certus.one',
-        'https://deltaswap.inotel.ro',
-        'https://deltaswap-v2-mainnet-api.mcf.rocks',
-        'https://deltaswap-v2-mainnet-api.chainlayer.network',
-        'https://deltaswap-v2-mainnet-api.staking.fund',
-        'https://deltaswap-v2-mainnet.01node.com',
+        'https://p-1.deltaswap.io',
+        'https://p-2.deltaswap.io',
+        'https://p-3.deltaswap.io',
       ]
     : ENV === 'TESTNET'
     ? ['https://deltaswap-v2-testnet-api.certus.one']
@@ -135,25 +132,50 @@ export const BRIDGE_DEFAULTS =
 export const TESTNET_TO_MAINNET_CHAIN_NAMES: {
   [k in TestnetChainName]: MainnetChainName;
 } = {
-  goerli: 'ethereum',
-  fuji: 'avalanche',
-  mumbai: 'polygon',
-  alfajores: 'celo',
-  moonbasealpha: 'moonbeam',
+  unset: 'unset',
   solana: 'solana',
+  ethereum: 'ethereum',
+  terra: 'terra',
   bsc: 'bsc',
+  polygon: 'polygon',
+  avalanche: 'avalanche',
+  oasis: 'oasis',
+  algorand: 'algorand',
+  aurora: 'aurora',
   fantom: 'fantom',
+  karura: 'karura',
+  acala: 'acala',
+  klaytn: 'klaytn',
+  celo: 'celo',
+  near: 'near',
+  moonbeam: 'moonbeam',
+  neon: 'neon',
+  terra2: 'terra2',
+  injective: 'injective',
+  osmosis: 'osmosis',
   sui: 'sui',
   aptos: 'aptos',
-  arbitrumgoerli: 'arbitrum',
-  optimismgoerli: 'optimism',
-  basegoerli: 'base',
+  arbitrum: 'arbitrum',
+  optimism: 'optimism',
+  gnosis: 'gnosis',
+  pythnet: 'pythnet',
+  xpla: 'xpla',
+  btc: 'btc',
+  base: 'base',
   sei: 'sei',
+  rootstock: 'rootstock',
+  scroll: 'scroll',
+  tron: 'tron',
+  planq: 'planq',
   deltachain: 'deltachain',
-  osmosis: 'osmosis',
   cosmoshub: 'cosmoshub',
   evmos: 'evmos',
   kujira: 'kujira',
+  celestia: 'celestia',
+  sepolia: 'sepolia',
 };
 
 validateConfigs();
+
+
+
