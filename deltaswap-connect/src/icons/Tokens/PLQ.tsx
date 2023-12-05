@@ -32,4 +32,4 @@ function PLQ() {
   );
 }
 
-export default BSC;
+export default PLQ;

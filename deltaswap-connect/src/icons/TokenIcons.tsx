@@ -32,6 +32,7 @@ import EVMOS from './Tokens/EVMOS';
 import ATOM from './Tokens/ATOM';
 import KUJI from './Tokens/KUJI';
 import PYTH from './Tokens/PYTH';
+import PLQ from "./Tokens/PLQ";
 
 const useStyles = makeStyles<{ size: number }>()((theme, { size }) => ({
   container: {
@@ -70,6 +71,9 @@ export const getIcon = (icon: Icon) => {
     }
     case Icon.BSC: {
       return BSC;
+    }
+    case Icon.PLQ: {
+      return PLQ;
     }
     case Icon.CELO: {
       return CELO;
