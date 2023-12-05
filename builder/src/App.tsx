@@ -930,14 +930,15 @@ function App() {
                   sx={{ mb: 0.5 }}
                 >
                   <FormControlLabel
-                    value="testnet"
-                    control={<Radio />}
-                    label="Testnet"
+                      value="mainnet"
+                      control={<Radio />}
+                      label="Mainnet"
                   />
                   <FormControlLabel
-                    value="mainnet"
+                    value="testnet"
                     control={<Radio />}
-                    label="Mainnet"
+                    disabled={true}
+                    label="Testnet"
                   />
                 </RadioGroup>
                 <Alert severity="info">

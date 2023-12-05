@@ -73,12 +73,12 @@ function FAQ() {
           (e.g. cross chain asset swaps) that enable other forms of bridging
           more suitable for certain use cases. Check{' '}
           <a
-            href="https://deltaswap.com/connect"
+            href="https://deltaswap.io/connect"
             target="_blank"
             rel="noreferrer"
             className={classes.link}
           >
-            https://deltaswap.com/connect
+            https://deltaswap.io/connect
           </a>{' '}
           for updates on Connect support.
         </>
@@ -104,12 +104,12 @@ function FAQ() {
           </a>{' '}
           and Deltaswap supported chains at{' '}
           <a
-            href="https://deltaswap.com/network"
+            href="https://deltaswap.io/network"
             target="_blank"
             rel="noreferrer"
             className={classes.link}
           >
-            https://deltaswap.com/network
+            https://deltaswap.io/network
           </a>
           .
         </>

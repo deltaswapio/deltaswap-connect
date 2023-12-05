@@ -1,6 +1,7 @@
 # Deltaswap Connect
 
 Deltaswap Connect is a project to facilitate integration with the Deltaswap protocol. It is thus far comprised of 3 components: deltaswap-connect, sdk and builder. Below is a brief introduction on each, see the corresponding READMEs for more information.
+It is a fork of [Wormhole Connect](https://github.com/wormhole-foundation/wormhole-connect)
 
 ### Deltaswap Connect
 
@@ -12,7 +13,7 @@ Read more [here](deltaswap-connect/README.md)
 
 ### Customizer
 
-Customize and integrate via our no-code solution: https://connect-in-style.deltaswap.com/
+Customize and integrate via our no-code solution: https://connect-in-style.deltaswap.io/
 
 ### SDK
 

@@ -11,74 +11,14 @@ export type Network = {
 
 export const NETWORKS: Network[] = [
   {
-    name: "Solana",
-    testnet: "solana",
-    mainnet: "solana",
-  },
-  {
-    name: "Ethereum",
-    testnet: "goerli",
-    mainnet: "ethereum",
-  },
-  {
     name: "BSC",
     testnet: "bsc",
     mainnet: "bsc",
   },
   {
-    name: "Polygon",
-    testnet: "mumbai",
-    mainnet: "polygon",
-  },
-  {
-    name: "Avalanche",
-    testnet: "fuji",
-    mainnet: "avalanche",
-  },
-  {
-    name: "Fantom",
-    testnet: "fantom",
-    mainnet: "fantom",
-  },
-  {
-    name: "Celo",
-    testnet: "alfajores",
-    mainnet: "celo",
-  },
-  {
-    name: "Moonbeam",
-    testnet: "moonbasealpha",
-    mainnet: "moonbeam",
-  },
-  {
-    name: "Sui",
-    testnet: "sui",
-    mainnet: "sui",
-  },
-  {
-    name: "Aptos",
-    testnet: "aptos",
-    mainnet: "aptos",
-  },
-  {
-    name: "Arbitrum",
-    testnet: "arbitrumgoerli",
-    mainnet: "arbitrum",
-  },
-  {
-    name: "Optimism",
-    testnet: "optimismgoerli",
-    mainnet: "optimism",
-  },
-  {
-    name: "Base",
-    testnet: "basegoerli",
-    mainnet: "base",
-  },
-  {
-    name: "Osmosis",
-    testnet: "osmosis",
-    mainnet: "osmosis",
+    name: "Planq",
+    testnet: "planq",
+    mainnet: "planq",
   },
 ];
 
@@ -219,7 +159,7 @@ export const ROUTE_INFOS: RouteInfo[] = [
     title: "Gateway",
     description:
       "Gateway connects liquidity and users from Ethereum and beyond to Cosmos chains and apps, all with an IBC-based liquidity router.",
-    link: "https://deltaswap.com/gateway/",
+    link: "https://deltaswap.io/gateway/",
   },
   {
     key: "tbtc",

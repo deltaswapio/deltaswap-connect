@@ -14,7 +14,8 @@ export const MAINNET_CHAINS = {
   arbitrum: 23,
   optimism: 24,
   base: 30,
-  deltachain: 3104,
+  planq: 7070,
+  deltachain: 7077,
   evmos: 4001,
   kujira: 4002,
 } as const;

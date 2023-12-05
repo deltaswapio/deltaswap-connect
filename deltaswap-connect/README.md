@@ -4,7 +4,7 @@ Integration does not get easier than this. Deltaswap Connect is an easy seamless
 
 ## Customizer
 
-Customize and integrate via our no-code solution: https://connect-in-style.deltaswap.com/
+Customize and integrate via our no-code solution: https://connect-in-style.deltaswap.io/
 
 ## Integration instructions
 
