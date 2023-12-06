@@ -79,9 +79,9 @@ const MAINNET: { [chain in MainnetChainName]: ChainConfig } = {
     context: Context.ETH,
     contracts: {
       ...CONTRACTS.MAINNET.bsc,
-      relayer: '',
+      relayer: '0x18dc5816373175b4107cfA4048937B341f1906b1',
     },
-    finalityThreshold: 15,
+    finalityThreshold: 1,
     nativeTokenDecimals: 18,
   },
   planq: {
@@ -90,9 +90,9 @@ const MAINNET: { [chain in MainnetChainName]: ChainConfig } = {
     context: Context.ETH,
     contracts: {
       ...CONTRACTS.MAINNET.planq,
-      relayer: '',
+      relayer: '0xA620d8d694889fd618A5A9432946Fa56d5Fb433a',
     },
-    finalityThreshold: 15,
+    finalityThreshold: 1,
     nativeTokenDecimals: 18,
   },
   ethereum: {

@@ -1,6 +1,6 @@
 {
   "name": "@deltaswapio/deltaswap-connect",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "dependencies": {
     "@mui/material": "^5.12.1"
   },
